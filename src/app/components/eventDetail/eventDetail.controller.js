@@ -14,18 +14,15 @@
     vm.eventAddress = "Liivi 2";
     vm.eventParticipants = "11/22";
     vm.directionsService = new google.maps.DirectionsService();
-    var latitude = 0.0; 
+    var latitude = 0.0;
     var longitude = 0.0;
-    
 
-   
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
-      console.log("FHUISHKJS")
     } else {
       alert("Geolocation is not supported by this browser.");
     }
-    
+
     vm.map = {
       center: {
         latitude : 1,
@@ -41,14 +38,11 @@
     };
 
     function showPosition(position) {
-      
-      var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+      var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       vm.map.center.latitude = coord.lat();
       vm.map.center.longitude = coord.lng();
-      console.log( vm.map.center.longitude)
-      
     }
-    
-   
+
+
   }
 })();
