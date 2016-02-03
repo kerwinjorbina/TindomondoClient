@@ -1,15 +1,28 @@
-<nav class="navbar navbar-fixed-top navbar-inverse">
+<nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+  <a class="navmenu-brand" href="#">Tindomondo</a>
+  <ul class="nav navmenu-nav">
+    <li class="active"><a href="#">Profile</a></li>
+    <li><a href="#">Settings</a></li>
+    <li><a href="#">Sign Out</a></li>
+  </ul>
+</nav>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand">
-        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      <a href="#" class="navbar-brand" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"><span class="glyphicon glyphicon-menu-hamburger"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </a>
-    </div>
-
-    <div id="bs-example-navbar-collapse-6">
-      <ul class="nav navbar-right navbar-brand">
-        <span class="glyphicon glyphicon-plus"></span>
-      </ul>
+        <a class="navbar-icon navbar-toggle" href="#" data-target=".navbar-collapse">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="navbar-icon navbar-toggle" href="#"><span class="glyphicon glyphicon-plus"></span></a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

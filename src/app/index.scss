@@ -36,6 +36,24 @@ body {
 	background-image: url("./../assets/images/bg.jpg");
 }
 
+.navbar-toggle {
+	margin-top: 8px;
+	border: none;
+	font-size: 26px;
+	margin-right: none;
+	color: #FFFFFF;
+}
+
+.navbar-brand {
+	margin-top: 8px;
+	border: none;
+	margin-right: none;
+	font-size: 26px;
+}
+
+.holder {
+  padding-top: 85px;
+}
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
