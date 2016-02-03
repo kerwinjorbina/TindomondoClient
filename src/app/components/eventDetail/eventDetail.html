@@ -5,23 +5,21 @@
   
   
 
-  <div ng-controller="eventController as controller" class="container">
-        <div>
-            <h1 id="event.name"></h1>
-            <span>{{controller.eventName.text}}</span>
-            <span>{{controller.eventDate.text + " " + controller.eventTime.text}}</span>
-            <span>{{controller.eventAddress.text}}</span>
-            <span>{{controller.eventParticipants.text}}</span>
+  <div ng-controller="EventController as controller" class="container">
+        <div class="panel panel-default">
+            <div>
+                <h1 id="event.name"></h1>
+                <p></p><span>{{controller.activity}}</span></p>
+                <p></p><span>{{controller.eventDate + " " + controller.eventTime}}</span></p>
+                <p></p><span>{{controller.eventAddress}}</span></p>
+                <p></p><span>{{controller.eventParticipants}}</span></p>
+                <p></p><span>{{controller.map.center.latitude}}</span></p>
+            </div>
         </div>
-
         <div class="col-md-12">
-                <div class="panel">
+                <div id="map" class="panel">
                   <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
-                    <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options"
-                                    events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
-                    <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible'
-                                      geodesic='p.geodesic' fit="true" editable="p.editable"
-                                      draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
+                    
                   </ui-gmap-google-map>
                 </div>
         </div>

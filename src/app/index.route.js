@@ -13,6 +13,10 @@
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main'
+      }).state('eventDetail', {
+        url: '/eventDetail',
+        templateUrl: 'app/components/eventDetail/eventDetail.html',
+        controller: 'EventController'
       });
 
     $urlRouterProvider.otherwise('/');
