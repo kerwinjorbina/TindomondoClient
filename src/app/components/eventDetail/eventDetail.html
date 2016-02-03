@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="container">
+    <div ng-include="'app/components/navbar/navbar.html'"></div>
+  </div>
+  
+  
+
+  <div ng-controller="eventController as controller" class="container">
+        <div>
+            <h1 id="event.name"></h1>
+            <span>{{controller.eventName.text}}</span>
+            <span>{{controller.eventDate.text + " " + controller.eventTime.text}}</span>
+            <span>{{controller.eventAddress.text}}</span>
+            <span>{{controller.eventParticipants.text}}</span>
+        </div>
+
+        <div class="col-md-12">
+                <div class="panel">
+                  <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
+                    <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options"
+                                    events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+                    <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+                                      geodesic='p.geodesic' fit="true" editable="p.editable"
+                                      draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
+                  </ui-gmap-google-map>
+                </div>
+        </div>
+    </div>
+</div>
