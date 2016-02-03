@@ -2,8 +2,8 @@
   <div class="container">
     <div ng-include="'app/components/navbar/navbar.html'"></div>
   </div>
-  
-  
+
+
 
   <div ng-controller="EventController as controller" class="container">
         <div class="panel panel-default">
@@ -13,13 +13,13 @@
                 <p></p><span>{{controller.eventDate + " " + controller.eventTime}}</span></p>
                 <p></p><span>{{controller.eventAddress}}</span></p>
                 <p></p><span>{{controller.eventParticipants}}</span></p>
-                <p></p><span>{{controller.map.center.latitude}}</span></p>
+                <p></p><span>{{controller.map.center}}</span></p>
             </div>
         </div>
         <div class="col-md-12">
                 <div id="map" class="panel">
                   <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
-                    
+
                   </ui-gmap-google-map>
                 </div>
         </div>
