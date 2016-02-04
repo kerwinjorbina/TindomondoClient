@@ -1,7 +1,12 @@
-<div class="container">
+<div class="container" ng-controller="MainController as controller">
+  <div class="holder">
+    <div ng-include="'app/components/navbar/navbar.html'"></div>
+  </div>
   <div class="holder">
   </div>
   <div>
+
+    <button type="button" class="btn btn-primary btn-large" data-ng-show="!controller.logged" data-ng-disabled="!controller.facebookReady" data-ng-click="controller.IntentLogin()">Login with Facebook</button>
 
   </div>
 </div>
