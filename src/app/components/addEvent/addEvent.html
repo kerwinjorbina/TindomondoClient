@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="holder">
+  <div class="container">
+    <div ng-include="'app/components/navbar/navbar.html'"></div>
+  </div>
+  
+      <div ng-controller="addEventController as controller" class="container">
+            <div class="panel panel-default">
+                <div>
+                    <h1 align = "center"> Make an event </h1>
+                    <table style="width:40%" align = "center" border = 0>
+                      <tr>
+                        <td>Date</td>
+                        <td>
+                            <form>
+                              <input type="date">
+                            </form>
+                        </td> 
+                      </tr>
+					  <tr>
+                        <td>Time</td>
+                        <td>
+                            <form>
+                              <input type="time">
+                            </form>
+                        </td> 
+                      </tr>
+                      <tr>
+                        <td>Sport type</td>
+                        <td>
+                            <select>
+                              <option value="value">Football</option>
+                              <option value="value">Basketball</option>
+                              <option value="value">Running</option>
+                              <option value="value">Swimming</option>
+                            </select>
+                        </td> 
+                      </tr>
+                      <tr>
+                        <td>Participants</td>
+                        <td>
+                            <select>
+                              <option value="value">1</option>
+                              <option value="value" selected>2</option>
+                              <option value="value">3</option>
+                              <option value="value">4</option>
+                            </select>
+                        </td>
+						</tr>
+						<tr>
+                        <td>Location</td>
+                        <td>
+                            <form>
+                              <input type="text" name="place" value = >
+                            </form>
+                        </td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+			<div id="map" ></div>
+						<div class="button">
+						  <button> Create </button>
+					  </div>
+				<script>
+				  function initMap() {
+					var mapDiv = document.getElementById('map');
+					var map = new google.maps.Map(mapDiv, {
+					  center: {lat: 58.0, lng: 27.0},
+					  zoom: 9
+					});
+				  }
+				</script>
+				<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+					async defer></script>
+        </div>
+    </div>
+</div>

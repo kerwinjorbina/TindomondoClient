@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, $timeout, Facebook) {
+  function MainController($scope, $rootScope, $timeout, Facebook) {
     var vm = this;
 
     // Define user empty data :/
@@ -71,6 +71,7 @@
          */
         $scope.$apply(function() {
           vm.user = response;
+          $rootScope.$broadcast('fbLoginHappened', vm.user);
         });
 
       });
@@ -87,6 +88,11 @@
         });
       });
     };
+
+    $rootScope.$on('logOutHappened', function() {
+      vm.user   = {};
+      vm.logged = false;
+    });
 
     /**
      * Taking approach of Events :D
