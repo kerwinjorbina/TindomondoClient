@@ -8,10 +8,11 @@
   /** @ngInject */
   function EventController($scope, $state, googleAddress) {
     var vm = this;
-    vm.activity = "Running";
-    vm.eventDate = "12.12.12";
-    vm.eventTime = "12.00";
-    vm.eventAddress = "Liivi 2";
+    vm.eventName = "Event 1";
+    vm.activity = "Football";
+    vm.eventDate = "04.02.2016";
+    vm.eventTime = "6:00 PM";
+    vm.eventAddress = "Tartu Gym, Tartu Estonia";
     vm.eventParticipants = "11/22";
     vm.directionsService = new google.maps.DirectionsService();
     
