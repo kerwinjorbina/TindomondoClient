@@ -109,6 +109,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd bower install
+chdir
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
@@ -117,7 +118,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
 :: 5. Run gulp transformations
 IF EXIST "%DEPLOYMENT_TARGET%\gulpfile.js" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd gulp
+  call :ExecuteCmd .\node_modules\.bin\gulp build
+chdir
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
