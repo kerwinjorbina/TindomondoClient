@@ -26,6 +26,10 @@
         url: '/eventList',
         templateUrl: 'app/components/eventList/eventList.html',
         controller: 'EventListController'
+      }).state('preferences', {
+        url: '/preferences',
+        templateUrl: 'app/components/preferences/preverences.html',
+        controller: 'preferencesontroller'
       });
 
     $urlRouterProvider.otherwise('/');
