@@ -14,7 +14,7 @@
         controller: 'MainController',
         controllerAs: 'main'
       }).state('eventDetail', {
-        url: '/eventDetail',
+        url: '/eventDetail/:id',
         templateUrl: 'app/components/eventDetail/eventDetail.html',
         controller: 'EventController'
       }).state('addEvent', {

@@ -6,13 +6,25 @@
     .service('sportService', sportService);
 
   /** @ngInject */
-  function sportService($http, $q) {
+  function sportService($http, $q, backendlink) {
     return {
-      getSport: function(data) {
+      getSports: function(data) {
         var sport = $q.defer();
         $http({
           method: 'GET',
-          url: '/api/sport/1',
+          url: backendlink+'/sports.json',
+          data: data
+        }).then(function(data) {
+          sport.resolve(data);
+        });
+        return sport.promise;
+      },
+      getSport: function(data) {
+        alert(data);
+        var sport = $q.defer();
+        $http({
+          method: 'GET',
+          url: backendlink+'/sports/'+id+'.json',
           data: data
         }).then(function(data) {
           sport.resolve(data);
