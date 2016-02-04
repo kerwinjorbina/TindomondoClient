@@ -33,7 +33,11 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 }
 
 body {
-	background-image: url("./../assets/images/bg.jpg");
+	background-image: url("./../assets/images/landing.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .navbar-toggle {
