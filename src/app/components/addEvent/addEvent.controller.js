@@ -8,7 +8,6 @@
   /** @ngInject */
   function addEventController($scope, $state) {
     var vm = this;
-    vm,
     vm.date;
     vm.sport;
     vm.participants;
