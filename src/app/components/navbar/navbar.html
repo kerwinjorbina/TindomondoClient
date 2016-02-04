@@ -2,6 +2,7 @@
   <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
     <div class="navmenu-brand">Tindomondo</div>
     <ul class="nav navmenu-nav">
+      <li data-ng-show="controller.profilePicImage"><img data-ng-show="controller.profilePicImage" src="{{controller.profilePicImage}}" alt=""/></li>
       <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady"><a href="#">{{controller.user.name}}</a></li>
       <li class="active"><a href="#">Profile</a></li>
       <li><a href="#">Settings</a></li>
@@ -27,7 +28,6 @@
         </ul>
       </div>
     </div>
-</div>
-</nav>
+  </nav>
 
 </div>

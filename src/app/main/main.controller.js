@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, $rootScope, $timeout, Facebook) {
+  function MainController($scope, $rootScope, $timeout, Facebook, $http) {
     var vm = this;
 
     // Define user empty data :/
@@ -14,6 +14,8 @@
 
     // Defining user logged status
     vm.logged = false;
+    vm.buttonDisabled = false;
+
 
     /**
      * Watch for Facebook to be ready.
@@ -43,6 +45,10 @@
      * IntentLogin
      */
     vm.IntentLogin = function() {
+      console.log("Before: ", vm.buttonDisabled);
+      vm.buttonDisabled = true;
+      console.log("After: ", vm.buttonDisabled);
+      console.log("Login started!");
       if(!userIsConnected) {
         vm.login();
       }
@@ -53,12 +59,15 @@
      */
     vm.login = function() {
       Facebook.login(function(response) {
+
         if (response.status == 'connected') {
           vm.logged = true;
           vm.me();
+        } else {
+          vm.buttonDisabled = false;
         }
 
-      });
+      }, {scope: 'email,public_profile'});
     };
 
     /**
@@ -85,6 +94,7 @@
         $scope.$apply(function() {
           vm.user   = {};
           vm.logged = false;
+          userIsConnected = false;
         });
       });
     };
@@ -92,31 +102,9 @@
     $rootScope.$on('logOutHappened', function() {
       vm.user   = {};
       vm.logged = false;
+      userIsConnected = false;
+      vm.buttonDisabled = false;
     });
 
-    /**
-     * Taking approach of Events :D
-     */
-    /*$scope.$on('Facebook:statusChange', function(ev, data) {
-     console.log('Status: ', data);
-     if (data.status == 'connected') {
-     $scope.$apply(function() {
-     vm.salutation = true;
-     vm.byebye     = false;
-     });
-     } else {
-     $scope.$apply(function() {
-     vm.salutation = false;
-     vm.byebye     = true;
-
-     // Dismiss byebye message after two seconds
-     $timeout(function() {
-     vm.byebye = false;
-     }, 2000)
-     });
-     }
-
-
-     });*/
   }
 })();
