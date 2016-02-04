@@ -6,7 +6,7 @@
     .controller('EventListController', EventListController);
 
   /** @ngInject */
-  function EventListController($scope, eventService) {
+  function EventListController($scope, eventService, Facebook) {
     var vm = this;
     vm.events = [];
     vm.loggedIn = false;
