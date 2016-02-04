@@ -9,6 +9,28 @@
   function EventListController(backendlink, eventService) {
     var vm = this;
     vm.events = [];
+    vm.loggedIn = false;
+    vm.user = {};
+
+    Facebook.getLoginStatus(function(response) {
+      if (response.status == 'connected') {
+        vm.loggedIn = true;
+        vm.me();
+      } else {
+        $state.go('home');
+      }
+    });
+
+    vm.me = function() {
+      Facebook.api('/me', function(response) {
+
+        $scope.$apply(function() {
+          vm.user = response;
+        });
+
+      });
+    };
+
     eventService.getEvents(1).then(function(response) {
 		response.data.forEach(function(event) {
           vm.events.push(
