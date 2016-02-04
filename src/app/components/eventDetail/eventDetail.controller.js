@@ -36,8 +36,8 @@
     vm.dep_marker = {
       id: 0,
       coords: {
-        latitude: 59.43669647920433,
-        longitude: 24.754600524902344
+        latitude: 58.3783078,
+        longitude: 26.71467329999996
       },
       
       options: { draggable: false, visible: true},
@@ -107,6 +107,7 @@
       }
     };
     
+  
     vm.polylines = [{
       id: 0,
       path: [],
@@ -145,6 +146,7 @@
           function createPolylineRoute(routeList) {
             var path = [];
             angular.forEach(routeList, function(routeElement) {
+              //console.log(routeElement.getNorthEast())
               var pathPoint = {latitude: routeElement.lat(), longitude: routeElement.lng()};
               path.push(pathPoint);
             });
@@ -155,8 +157,7 @@
           
         vm.directionsService.route(createRouteRequest(), function(response, status) {
           if (status=='OK') {
-            console.log(response)
-            createPolylineRoute(response.routes[0]);
+            createPolylineRoute(response.routes[0].overview_path);
           };
         })
         
