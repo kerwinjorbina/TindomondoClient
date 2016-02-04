@@ -1,23 +1,12 @@
-<div class="container">
+<div class="container" ng-controller="MainController as controller">
   <div class="holder">
-    <acme-navbar></acme-navbar>
+    <div ng-include="'app/components/navbar/navbar.html'"></div>
+  </div>
+  <div class="holder">
   </div>
   <div>
-    <div class="panel">
-      <div class="panel-body">
-        <div class="panel-group">
-          <a href="javascript:scr">
-            <div class="panel panel-default">
-              <div class="panel panel-body">
-                <div class="pull-left">
-                    <h4>Event 1</h4>
-                    <h4><small>6:00 PM, Tartu Gym, Tartu Estonia</small></h4>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
+
+    <button type="button" class="btn btn-primary btn-large" data-ng-show="!controller.logged" data-ng-disabled="!controller.facebookReady" data-ng-click="controller.IntentLogin()">Login with Facebook</button>
+
   </div>
 </div>

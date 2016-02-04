@@ -1,20 +1,23 @@
-<nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
-  <a class="navmenu-brand" href="#">Tindomondo</a>
-  <ul class="nav navmenu-nav">
-    <li class="active"><a href="#">Profile</a></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#">Sign Out</a></li>
-  </ul>
-</nav>
-<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="#" class="navbar-brand" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"><span class="glyphicon glyphicon-menu-hamburger"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-        <a class="navbar-icon navbar-toggle" href="#" data-target=".navbar-collapse">
+<div ng-controller="NavbarController as controller">
+  <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+    <div class="navmenu-brand">Tindomondo</div>
+    <ul class="nav navmenu-nav">
+      <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady"><a href="#">{{controller.user.name}}</a></li>
+      <li class="active"><a href="#">Profile</a></li>
+      <li><a href="#">Settings</a></li>
+      <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" data-ng-click="controller.logout()"><a href="#">Sign Out</a></li>
+
+    </ul>
+  </nav>
+  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"><span class="glyphicon glyphicon-menu-hamburger"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="navbar-icon navbar-toggle" data-target=".navbar-collapse">
           <span class="glyphicon glyphicon-plus"></span>
         </a>
       </div>
@@ -24,5 +27,7 @@
         </ul>
       </div>
     </div>
-  </div>
+</div>
 </nav>
+
+</div>

@@ -17,13 +17,16 @@
         url: '/eventDetail',
         templateUrl: 'app/components/eventDetail/eventDetail.html',
         controller: 'EventController'
-      }).state*('addEvent', {
+      }).state('addEvent', {
         url: '/addEvent',
         templateUrl: 'app/components/addEvent/addEvent.html',
         controller: 'addEventController',
         controllerAs: 'controller'
-      })
-      ;
+      }).state('eventList', {
+        url: '/eventList',
+        templateUrl: 'app/components/eventList/eventList.html',
+        controller: 'EventListController'
+      });
 
     $urlRouterProvider.otherwise('/');
   }

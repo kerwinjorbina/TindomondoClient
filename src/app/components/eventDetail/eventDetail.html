@@ -7,10 +7,11 @@
 
 
   <div ng-controller="EventController as controller" class="container">
-        <div class="panel panel-default">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+              <h4>{{controller.activity}}</h4>
+          </div>
             <div>
-                <h1 id="event.name"></h1>
-                <p></p><span>{{controller.activity}}</span></p>
                 <p></p><span>{{controller.eventDate + " " + controller.eventTime}}</span></p>
                 <p></p><span>{{controller.eventAddress}}</span></p>
                 <p></p><span>{{controller.eventParticipants}}</span></p>
@@ -18,9 +19,13 @@
         </div>
         <div class="col-md-12">
                 <div id="map" class="panel">
-                  <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
-
-                  </ui-gmap-google-map>
+                   <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
+                      <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options"
+                                      events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+                      <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+                                        geodesic='p.geodesic' fit="true" editable="p.editable"
+                                        draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
+                    </ui-gmap-google-map>
                 </div>
         </div>
     </div>
