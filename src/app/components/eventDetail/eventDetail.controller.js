@@ -33,7 +33,7 @@
       alert("Geolocation is not supported by this browser.");
     }*/
     
-     vm.marker = {
+    vm.dep_marker = {
       id: 0,
       coords: {
         latitude: 59.43669647920433,
@@ -46,19 +46,30 @@
     };
     
     
-   
+   vm.dest_marker = {
+      id: 1,
+      coords: {
+        latitude: 58.3664525,
+        longitude: 26.713723699999946
+      },
+      
+      options: { draggable: false, visible: true},
+      events: {
+      }
+    };
     
     vm.fillMap = fillMap;
     function fillMap(coords) {
       vm.map.center.latitude = coords.latitude;
       vm.map.center.longitude = coords.longitude;
-      vm.marker.coords.latitude = coords.latitude;
-      vm.marker.coords.longitude = coords.longitude;
+      vm.dep_marker.coords.latitude = coords.latitude;
+      vm.dep_marker.coords.longitude = coords.longitude;
       $scope.$apply();
     }
     
     vm.markers = [];
-    vm.markers.push(vm.marker);
+    vm.markers.push(vm.dep_marker);
+    vm.markers.push(vm.dest_marker);
 
     vm.currentPositionCallback = currentPositionCallback;
     function currentPositionCallback(position) {
@@ -96,9 +107,59 @@
       }
     };
     
-    
-    
- 
+    vm.polylines = [{
+      id: 0,
+      path: [],
+      stroke: {
+        color: '#3498db',
+        weight: 3
+      },
+      editable: false,
+      draggable: false,
+      geodesic: true,
+      visible: false,
+      icons: [{
+
+        offset: '25px',
+        repeat: '50px'
+      }]
+    }];
+
+      vm.createRouteRequest = createRouteRequest;
+          function createRouteRequest() {
+            return {
+              origin: new google.maps.LatLng(
+                vm.dep_marker.coords.latitude,
+                vm.dep_marker.coords.longitude
+              ),
+              destination: new google.maps.LatLng(
+                vm.dest_marker.coords.latitude,
+                vm.dest_marker.coords.longitude
+              ),
+      	      travelMode: google.maps.TravelMode['WALKING'],
+              optimizeWaypoints: true
+      	    };
+      	  }
+      
+      vm.createPolylineRoute = createPolylineRoute;
+          function createPolylineRoute(routeList) {
+            var path = [];
+            angular.forEach(routeList, function(routeElement) {
+              var pathPoint = {latitude: routeElement.lat(), longitude: routeElement.lng()};
+              path.push(pathPoint);
+            });
+            vm.polylines[0].path = path;
+            vm.polylines[0].visible = true;
+            $scope.$digest(); //Seems to make map updating faster but is not totally necessary
+          }
+          
+        vm.directionsService.route(createRouteRequest(), function(response, status) {
+          if (status=='OK') {
+            console.log(response)
+            createPolylineRoute(response.routes[0]);
+          };
+        })
+        
 
    /* function showPosition(position) {
       var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
