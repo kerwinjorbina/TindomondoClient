@@ -1,5 +1,6 @@
 .angular-google-map-container { height:400px;}
 
+
 .container{
     text-align: center;
 }
@@ -7,17 +8,49 @@
   padding-top: 85px;
 }
 .joinButton{
+  font-family: 'Montserrat', sans-serif;
+  height: 40px;
+  width: 160px;
+  margin-top: 15px;
   margin-bottom: 15px;
   background: #2E9497;
   color: #FFFFFF;
-  width: 400px;
+  font-weight:bold;
+  border-color: #2E9497;
 }
 .unjoinButton{
-  width: 500px;
+  font-family: 'Montserrat', sans-serif;
+  width: 60px;
   background: #FF0000;
   color: #FFFFFF;
+  font-weight:bold;
+  border-color: none;
+  line-height: 300%;
 }
 .eventPanel{
+  font-family: 'Montserrat', sans-serif;
   width: 500px;
   margin:0 auto;
+  line-height: 300%;
+  padding: 0px;
+  
+}
+.topEventPanel{
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+}
+p {
+    margin: 0 0 0;
+}
+.infoField{
+  width: 100%;
+}
+.fieldName{
+  text-align:left;
+  margin-left: 10px;
+  border-right: 1px solid #ccc;
+}
+.fieldValue{
+  margin-left: 10px;
+  text-align:left;
 }

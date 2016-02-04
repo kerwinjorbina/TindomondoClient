@@ -5,24 +5,55 @@
   </div>
 
   <div ng-controller="EventController as controller" class="container">
-    <div class="panel panel-default eventPanel">
-      <div class="panel-heading">
-        <h4>{{controller.eventName}}</h4>
-      </div>
-      <div>
-        <p></p><span>{{controller.activity}}</span>
-        <p></p><span>{{controller.eventDate + " " + controller.eventTime}},</span></p>
-        <p></p><span>{{controller.eventAddress}},</span></p>
-        <p></p><span>{{controller.eventParticipants}},</span></p>
-      </div>
-        <div id="map" class="panel">
-          <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
-            <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options" events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
-            <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="true" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
-          </ui-gmap-google-map>
+    <div class="container panel panel-default eventPanel topEventPanel">
+      <div class="row">
+        <div class="col-md-4">
+            <div class="fieldName">Date</div>
         </div>
+        <div class="col-md-8">
+            <div class="fieldValue">{{controller.eventDate + " " + controller.eventTime}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+            <div class="fieldName">Sport</div>
+        </div>
+        <div class="col-md-8">
+            <div class="fieldValue">{{controller.activity}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+            <div class="fieldName">Participants</div>
+        </div>
+        <div class="col-md-8">
+            <div class="fieldValue">{{controller.eventParticipants}}</div>
+        </div>
+      </div>
+      
+      
+      
+      
     </div>
-    <button type="button" class = "btn btn-default joinButton">JOIN</button>
+    <div class="container panel panel-default eventPanel">
+      <div class="row">
+        <div class="col-md-4">
+            <div class="fieldName">Address</div>
+        </div>
+        <div class="col-md-8">
+          <div class="fieldValue">{{controller.eventAddress}}</div>
+        </div>
+      </div>
+      <div id="map" class="row panel">
+        <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
+          <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options" events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+          <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="true" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
+        </ui-gmap-google-map>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <button id="joinButton" type="button" class = "btn btn-default joinButton">JOIN</button>
+    </div>
   </div>
   </div>
 </div>
