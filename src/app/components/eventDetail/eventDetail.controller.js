@@ -8,10 +8,11 @@
   /** @ngInject */
   function EventController($scope, $state, googleAddress, Facebook) {
     var vm = this;
-    vm.activity = "Running";
-    vm.eventDate = "12.12.12";
-    vm.eventTime = "12.00";
-    vm.eventAddress = "Liivi 2";
+    vm.eventName = "Event 1";
+    vm.activity = "Football";
+    vm.eventDate = "04.02.2016";
+    vm.eventTime = "6:00 PM";
+    vm.eventAddress = "Tartu Gym, Tartu Estonia";
     vm.eventParticipants = "11/22";
     vm.directionsService = new google.maps.DirectionsService();
     vm.loggedIn = false;
@@ -98,7 +99,7 @@
       lng = position.coords.longitude;
 
       fillMap(position.coords);
-
+      
       googleAddress.getAddress(position.coords.latitude, position.coords.longitude).then(function successCallback(response) {
         vm.currentLocation = response.data.results[0].formatted_address;
       });
@@ -120,15 +121,14 @@
         longitude : 26.69020660000001
       },
       bounds: new google.maps.LatLngBounds(),
-      zoom: 16,
+      zoom: 13,
       options: {
         mapTypeControl: true,
         panControl: true,
         zoomControl: true
       }
     };
-
-
+    
     vm.polylines = [{
       id: 0,
       path: [],
