@@ -17,6 +17,10 @@
         url: '/eventDetail',
         templateUrl: 'app/components/eventDetail/eventDetail.html',
         controller: 'EventController'
+      }).state('eventList', {
+        url: '/eventList',
+        templateUrl: 'app/components/eventList/eventList.html',
+        controller: 'EventListController'
       });
 
     $urlRouterProvider.otherwise('/');
