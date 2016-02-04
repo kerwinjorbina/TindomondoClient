@@ -33,6 +33,21 @@
       alert("Geolocation is not supported by this browser.");
     }*/
     
+     vm.marker = {
+      id: 0,
+      coords: {
+        latitude: 59.43669647920433,
+        longitude: 24.754600524902344
+      },
+      
+      options: { draggable: false, visible: true},
+      events: {
+      }
+    };
+    
+    
+   
+    
     vm.fillMap = fillMap;
     function fillMap(coords) {
       vm.map.center.latitude = coords.latitude;
@@ -41,6 +56,9 @@
       vm.marker.coords.longitude = coords.longitude;
       $scope.$apply();
     }
+    
+    vm.markers = [];
+    vm.markers.push(vm.marker);
 
     vm.currentPositionCallback = currentPositionCallback;
     function currentPositionCallback(position) {
@@ -77,6 +95,10 @@
         zoomControl: true
       }
     };
+    
+    
+    
+ 
 
    /* function showPosition(position) {
       var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
