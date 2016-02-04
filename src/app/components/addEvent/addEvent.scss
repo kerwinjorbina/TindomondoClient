@@ -1,15 +1,18 @@
+.angular-google-map-container { height:400px;}
+
+.panelmap{
+    text-align: center;
+    padding-top:50px;
+}
 .panel{
     text-align: center;
 }
 .holder {
   padding-top: 85px;
 }
-.button {
-    text-align: center; 
-}
-#map {
-
-  top:0; 
-  margin-left: auto;
-  margin-right: auto; width:50%; height:50%;
+.joinButton{
+  margin-bottom: 15px;
+  background: #2E9497;
+  color: #FFFFFF;
+  width: 400px;
 }

@@ -7,27 +7,27 @@
       <div ng-controller="addEventController as controller" class="container">
             <div class="panel panel-default">
                 <div>
-                    <h1 align = "center"> Make an event </h1>
-                    <table style="width:40%" align = "center" border = 0>
+                    <h1 align = "center"><b> Make an event </b></h1>
+                    <table style="width:50%" align = "center" border = 0>
                       <tr>
-                        <td>Date</td>
-                        <td>
+                        <td align="left"><p></p><b>Date</b></td>
+                        <td align="left"><p></p>
                             <form>
                               <input type="date">
                             </form>
                         </td> 
                       </tr>
 					  <tr>
-                        <td>Time</td>
-                        <td>
+                        <td align="left"><p></p><b>Time</b></td>
+                        <td align="left"><p></p>
                             <form>
                               <input type="time">
                             </form>
                         </td> 
                       </tr>
                       <tr>
-                        <td>Sport type</td>
-                        <td>
+                        <td align="left"><p></p><b>Sport type</b></td>
+                        <td align="left"><p></p>
                             <select>
                               <option value="value">Football</option>
                               <option value="value">Basketball</option>
@@ -37,8 +37,8 @@
                         </td> 
                       </tr>
                       <tr>
-                        <td>Participants</td>
-                        <td>
+                        <td align="left"><p></p><b>Participants</b></td>
+                        <td align="left"><p></p>
                             <select>
                               <option value="value">1</option>
                               <option value="value" selected>2</option>
@@ -46,10 +46,10 @@
                               <option value="value">4</option>
                             </select>
                         </td>
-						</tr>
-						<tr>
-                        <td>Location</td>
-                        <td>
+          						</tr>
+          						<tr>
+                        <td align="left"><b><p></p>Location</b></td>
+                        <td align="left"><p></p>
                             <form>
                               <input type="text" name="place" value = >
                             </form>
@@ -57,22 +57,19 @@
                       </tr>
                     </table>
                 </div>
+                                        <div id="map" class="panelmap">
+                                           <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
+                                              <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options"
+                                                              events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+                                              <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+                                                                geodesic='p.geodesic' fit="true" editable="p.editable"
+                                                                draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
+                                            </ui-gmap-google-map>
+                </div>
             </div>
-			<div id="map" ></div>
-						<div class="button">
-						  <button> Create </button>
+						<div>
+              <button type="button" class = "btn btn-default joinButton"> Create </button>
 					  </div>
-				<script>
-				  function initMap() {
-					var mapDiv = document.getElementById('map');
-					var map = new google.maps.Map(mapDiv, {
-					  center: {lat: 58.0, lng: 27.0},
-					  zoom: 9
-					});
-				  }
-				</script>
-				<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-					async defer></script>
         </div>
     </div>
 </div>
