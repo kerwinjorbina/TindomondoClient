@@ -14,6 +14,7 @@
     vm.eventTime = "6:00 PM";
     vm.eventAddress = "Tartu Gym, Tartu Estonia";
     vm.eventParticipants = "11/22";
+    vm.minParticipants = 2;
     vm.directionsService = new google.maps.DirectionsService();
     vm.loggedIn = false;
     vm.user = {};
@@ -181,6 +182,13 @@
             createPolylineRoute(response.routes[0].overview_path);
           };
         })
+        
+        $scope.changeButton = function(){
+          if(document.getElementById('joinButton').textContent === 'JOIN') document.getElementById('joinButton').textContent = 'UNJOIN'
+          else document.getElementById('joinButton').textContent = 'JOIN';
+          if ($("#joinButton").attr('class') === 'unjoinButton') $("#joinButton").attr('class','joinButton')
+          else $("#joinButton").attr('class','unjoinButton');
+        };
 
 
    /* function showPosition(position) {
