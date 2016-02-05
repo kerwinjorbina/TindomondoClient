@@ -31,7 +31,7 @@ gulp.task('default', ['clean'], function () {
 gulp.task('serveprod', function() {
   connect.server({
     root: '/',
-    port: process.env.PORT || 3000, // localhost:5000
+    port: process.env.PORT || 5000, // localhost:5000
     livereload: false
   });
 });

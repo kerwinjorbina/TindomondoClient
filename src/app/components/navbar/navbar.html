@@ -3,7 +3,7 @@
     <div class="navmenu-brand">Tindomondo</div>
     <ul class="nav navmenu-nav">
       <li data-ng-show="controller.profilePicImage"><img data-ng-show="controller.profilePicImage" src="{{controller.profilePicImage}}" alt=""/></li>
-      <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady"><a href="#">{{controller.user.name}}</a></li>
+      <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady">{{controller.user.name}}</li>
       <li class="active"><a href="#">Profile</a></li>
       <li><a href="#">Settings</a></li>
       <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" data-ng-click="controller.logout()"><a href="#">Sign Out</a></li>
@@ -18,13 +18,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a href="/#/addEvent" class="navbar-icon navbar-toggle" data-target=".navbar-collapse">
-          <span class="glyphicon glyphicon-plus"></span>
+        <a class="navbar-icon navbar-toggle" data-target=".navbar-collapse">
+          <span data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" href="/#/addEvent" class="glyphicon glyphicon-plus"></span>
         </a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a class="navbar-icon navbar-toggle" href="/#/addEvent"><span class="glyphicon glyphicon-plus"></span></a></li>
+          <li><a data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" href="/#/addEvent" class="navbar-icon navbar-toggle" href="/#/addEvent"><span class="glyphicon glyphicon-plus"></span></a></li>
         </ul>
       </div>
     </div>
