@@ -132,8 +132,8 @@
 
     vm.map = {
       center: {
-        latitude : 58.3661916,
-        longitude : 26.69020660000001
+        latitude : vm.dep_marker.coords.latitude,
+        longitude : vm.dep_marker.coords.longitude
       },
       bounds: new google.maps.LatLngBounds(),
       zoom: 13,
@@ -165,10 +165,6 @@
       vm.createRouteRequest = createRouteRequest;
 
           function createRouteRequest() {
-            googleAddress.getCoordinates(vm.eventAddress).then(function successCallback(coordinates_response) {
-              vm.dest_marker.coords.latitude = coordinates_response.data.results[0].geometry.location.lat;
-              vm.dest_marker.coords.longitude = coordinates_response.data.results[0].geometry.location.lng;
-            });
             return {
               origin: new google.maps.LatLng(
                 vm.dep_marker.coords.latitude,
@@ -196,11 +192,16 @@
             $scope.$digest(); //Seems to make map updating faster but is not totally necessary
           }
 
-        vm.directionsService.route(createRouteRequest(), function(response, status) {
+        googleAddress.getCoordinates(vm.eventAddress).then(function successCallback(coordinates_response) {
+          vm.dest_marker.coords.latitude = coordinates_response.data.results[0].geometry.location.lat;
+          vm.dest_marker.coords.longitude = coordinates_response.data.results[0].geometry.location.lng;
+          vm.directionsService.route(createRouteRequest(), function(response, status) {
           if (status=='OK') {
-            createPolylineRoute(response.routes[0].overview_path);
-          };
-        })
+              createPolylineRoute(response.routes[0].overview_path);
+            };
+          });
+        });
+
     });
 
   }
