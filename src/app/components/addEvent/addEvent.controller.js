@@ -12,7 +12,13 @@
     vm.sport;
     vm.participants;
     vm.place;
-    vm.user = {};
+
+    Facebook.api('/me', function(user) {
+      $scope.$apply(function() {
+        $rootScope.$broadcast('fbLoginHappened', user);
+      });
+    });
+
     vm.directionsService = new google.maps.DirectionsService();
         vm.map = {
       center: {
@@ -28,22 +34,7 @@
       }
     };
 
-    Facebook.getLoginStatus(function(response) {
-      if (response.status == 'connected') {
-        vm.me();
-      } else {
-        $state.go('home');
-      }
-    });
 
-    vm.me = function() {
-      Facebook.api('/me', function(response) {
-        $scope.$apply(function() {
-          vm.user = response;
-          $rootScope.$broadcast('fbLoginHappened', vm.user);
-        });
-      });
-    };
 
     vm.sports = [];
     sportService.getSports().then(function(sports_response){
