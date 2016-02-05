@@ -20,7 +20,11 @@
     });
 
     vm.directionsService = new google.maps.DirectionsService();
-        vm.map = {
+    
+    vm.markers = [];
+    vm.markers.push(vm.marker);
+    
+    vm.map = {
       center: {
         latitude : 58.3661916,
         longitude : 26.69020660000001
@@ -30,7 +34,27 @@
       options: {
         mapTypeControl: true,
         panControl: true,
-        zoomControl: true
+        zoomControl: true,
+        clickable: true
+      },
+      events: {
+        click: function (mapModel, eventName, originalEventArgs) {
+        vm.markers = [];
+                var lat = originalEventArgs[0].latLng.lat();
+                var lng = originalEventArgs[0].latLng.lng();
+                var marker = {
+                    id: 1,
+                    coords: {
+                        latitude: lat,
+                        longitude: lng
+                    }
+                };
+                vm.markers.push(marker);
+                vm.map.center.latitude = lat;
+                vm.map.center.longitude = lng;
+                //console.log($scope.map.markers);
+                $scope.$digest();
+            }
       }
     };
 
@@ -52,10 +76,42 @@
         alert("here 222");
       });
     };
-  }
+  
+
+
+  
+
+    
+    vm.marker = {
+          id: 0,
+          coords: {
+            latitude: 58.3661916,
+            longitude: 26.69020660000001
+          },
+          options: { draggable: false, visible: true},
+    };
+    
+   
+   
+        
+        
+    /*vm.fillMap = fillMap;
+    function fillMap(coords) {
+      vm.marker.coords.latitude = coords.latitude;
+      vm.marker.coords.longitude = coords.longitude;
+      $scope.$apply();
+    }*/
+      
+    
+    /*vm.placeMarker = PlaceMarker;
+    function placeMarker(lat, lng) {
+          vm.marker.coords.latitude = lat;
+          vm.marker.coords.longitude = lng;
+        }*/
+    }
 })();
 
-  angular
+angular
     .module('client').filter('range', function() {
   return function(input, min, max) {
     min = parseInt(min); //Make string input int
