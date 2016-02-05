@@ -12,7 +12,7 @@
     vm.sport;
     vm.participants;
     vm.place;
-    vm.eventAddress;
+    vm.eventAddress = "Choose location on map";
 
     Facebook.api('/me', function(user) {
       $scope.$apply(function() {
@@ -78,6 +78,7 @@
         alert("here 222");
       });
     };
+    
 
     
     vm.marker = {
