@@ -99,11 +99,9 @@
       vm.map.center.longitude = coords.longitude;
       vm.dep_marker.coords.latitude = coords.latitude;
       vm.dep_marker.coords.longitude = coords.longitude;
-      googleAddress.getAddress(vm.dest_marker.coords.latitude, vm.dest_marker.coords.longitude).then(function successCallback(response) {
-        vm.eventAddress = vm.eventAddress;
-      });
       $scope.$apply();
     }
+
 
     vm.markers = [];
     vm.markers.push(vm.dep_marker);
@@ -165,7 +163,12 @@
     }];
 
       vm.createRouteRequest = createRouteRequest;
+
           function createRouteRequest() {
+            googleAddress.getCoordinates(vm.eventAddress).then(function successCallback(coordinates_response) {
+              vm.dest_marker.coords.latitude = coordinates_response.data.results[0].geometry.location.lat;
+              vm.dest_marker.coords.longitude = coordinates_response.data.results[0].geometry.location.lng;
+            });
             return {
               origin: new google.maps.LatLng(
                 vm.dep_marker.coords.latitude,
