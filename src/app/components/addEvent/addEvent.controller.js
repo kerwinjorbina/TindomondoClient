@@ -6,13 +6,14 @@
     .controller('addEventController', addEventController);
 
   /** @ngInject */
-  function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService) {
+  function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService, googleAddress) {
     var vm = this;
     vm.date;
     vm.sport;
     vm.participants;
     vm.place;
     $scope.eventData = {};
+    vm.eventAddress = "Choose location on map";
 
     Facebook.api('/me', function(user) {
       $scope.$apply(function() {
@@ -21,7 +22,11 @@
     });
 
     vm.directionsService = new google.maps.DirectionsService();
-        vm.map = {
+    
+    vm.markers = [];
+    vm.markers.push(vm.marker);
+    
+    vm.map = {
       center: {
         latitude : 58.3661916,
         longitude : 26.69020660000001
@@ -31,12 +36,33 @@
       options: {
         mapTypeControl: true,
         panControl: true,
-        zoomControl: true
+        zoomControl: true,
+        clickable: true
+      },
+      events: {
+        click: function (mapModel, eventName, originalEventArgs) {
+                vm.markers = [];
+                var lat = originalEventArgs[0].latLng.lat();
+                var lng = originalEventArgs[0].latLng.lng();
+                var marker = {
+                    id: 1,
+                    coords: {
+                        latitude: lat,
+                        longitude: lng
+                    }
+                };
+                vm.markers.push(marker);
+                //vm.map.center.latitude = lat;
+                //vm.map.center.longitude = lng;
+                //console.log($scope.map.markers);
+                googleAddress.getAddress(lat, lng).then(function successCallback(response) {
+                  vm.eventAddress = response.data.results[0].formatted_address;
+                });
+                $scope.$digest();
+            }
       }
     };
-
-
-
+    
     vm.sports = [];
     sportService.getSports().then(function(sports_response){
       sports_response.data.forEach(function(sport) {
@@ -58,10 +84,21 @@
 
       eventService.createEvent({sport_id: vm.sport, start_time: start, duration: 2, registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.location});
     };
-  }
+    
+
+    
+    vm.marker = {
+          id: 0,
+          coords: {
+            latitude: 58.3661916,
+            longitude: 26.69020660000001
+          },
+          options: { draggable: false, visible: true},
+    };
+    }
 })();
 
-  angular
+angular
     .module('client').filter('range', function() {
   return function(input, min, max) {
     min = parseInt(min); //Make string input int

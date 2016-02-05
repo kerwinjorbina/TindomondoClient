@@ -71,6 +71,9 @@
       vm.map.center.longitude = coords.longitude;
       vm.dep_marker.coords.latitude = coords.latitude;
       vm.dep_marker.coords.longitude = coords.longitude;
+      googleAddress.getAddress(vm.dest_marker.coords.latitude, vm.dest_marker.coords.longitude).then(function successCallback(response) {
+        vm.eventAddress = response.data.results[0].formatted_address;
+      });
       $scope.$apply();
     }
 
@@ -85,6 +88,7 @@
 
       fillMap(position.coords);
 
+      //not used but let it be
       googleAddress.getAddress(position.coords.latitude, position.coords.longitude).then(function successCallback(response) {
         vm.currentLocation = response.data.results[0].formatted_address;
       });

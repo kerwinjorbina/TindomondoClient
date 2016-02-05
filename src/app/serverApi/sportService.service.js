@@ -20,7 +20,6 @@
         return sport.promise;
       },
       getSport: function(data) {
-        alert(data);
         var sport = $q.defer();
         $http({
           method: 'GET',
