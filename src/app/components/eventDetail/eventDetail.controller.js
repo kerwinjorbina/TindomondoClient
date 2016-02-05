@@ -15,27 +15,15 @@
     vm.eventAddress = "Tartu Gym, Tartu Estonia";
     vm.eventParticipants = "11/22";
     vm.directionsService = new google.maps.DirectionsService();
-    vm.user = {};
 
     var lat = 0.0;
     var lng = 1.0;
 
-    Facebook.getLoginStatus(function(response) {
-      if (response.status == 'connected') {
-        vm.me();
-      } else {
-        $state.go('home');
-      }
-    });
-
-    vm.me = function() {
-      Facebook.api('/me', function(response) {
-        $scope.$apply(function() {
-          vm.user = response;
-          $rootScope.$broadcast('fbLoginHappened', vm.user);
-        });
+    Facebook.api('/me', function(user) {
+      $scope.$apply(function() {
+        $rootScope.$broadcast('fbLoginHappened', user);
       });
-    };
+    });
 
     /*var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 

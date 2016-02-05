@@ -16,20 +16,48 @@
       }).state('eventDetail', {
         url: '/eventDetail/:id',
         templateUrl: 'app/components/eventDetail/eventDetail.html',
-        controller: 'EventController'
+        controller: 'EventController',
+        onEnter: ['$state', 'Facebook', function($state, Facebook) {
+          Facebook.getLoginStatus(function(response) {
+            if (response.status != 'connected') {
+              $state.go('home');
+            }
+          });
+        }]
       }).state('addEvent', {
         url: '/addEvent',
         templateUrl: 'app/components/addEvent/addEvent.html',
         controller: 'addEventController',
-        controllerAs: 'controller'
+        controllerAs: 'controller',
+        onEnter: ['$state', 'Facebook', function($state, Facebook) {
+          Facebook.getLoginStatus(function(response) {
+            if (response.status != 'connected') {
+              $state.go('home');
+            }
+          });
+        }]
       }).state('eventList', {
         url: '/eventList',
         templateUrl: 'app/components/eventList/eventList.html',
-        controller: 'EventListController'
+        controller: 'EventListController',
+        onEnter: ['$state', 'Facebook', function($state, Facebook) {
+          Facebook.getLoginStatus(function(response) {
+            if (response.status != 'connected') {
+              $state.go('home');
+            }
+          });
+        }]
       }).state('preferences', {
         url: '/preferences',
         templateUrl: 'app/components/preferences/preverences.html',
-        controller: 'preferencesontroller'
+        controller: 'preferencesontroller',
+        onEnter: ['$state', 'Facebook', function($state, Facebook) {
+          Facebook.getLoginStatus(function(response) {
+            if (response.status != 'connected') {
+              $state.go('home');
+            }
+          });
+        }]
       });
 
     $urlRouterProvider.otherwise('/');
