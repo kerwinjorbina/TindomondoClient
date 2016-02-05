@@ -2,7 +2,7 @@
 <div ng-controller="EventController as controller" class="container">
 <div class="container content">
   <div class="col-md-12 title">
-    <p>{{controller.activity}}</p>
+    <p>Join an event</p>
   </div>
   <div class="holder">
   <div class="container">
@@ -50,12 +50,14 @@
           <div class="fieldValue">{{controller.eventAddress}}</div>
         </div>
       </div>
-      <div id="map" class="row panel">
-        <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
-          <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options" events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
-          <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="true" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
-        </ui-gmap-google-map>
-      </div>
+         <div class="row">
+          <div id="map" class="col-md-12">
+            <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
+              <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options" events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+              <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="true" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
+            </ui-gmap-google-map>
+          </div>
+        </div>
     </div>
     <div class="col-md-12">
       <button id="joinButton" type="button" class = "btn btn-default joinButton" ng-click="changeButton()">JOIN</button>
