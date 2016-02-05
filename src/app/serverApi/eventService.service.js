@@ -37,10 +37,11 @@
 
     return {
       createEvent: function(data) {
+        alert("here 111");
         var event = $q.defer();
         $http({
           method: 'POST',
-          url: backendlink+'/api/events',
+          url: backendlink+'/events',
           data: data
         }).then(function(data) {
           event.resolve(data);

@@ -6,7 +6,7 @@
     .controller('addEventController', addEventController);
 
   /** @ngInject */
-  function addEventController($scope, $state, $rootScope, Facebook, sportService) {
+  function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService) {
     var vm = this;
     vm.date;
     vm.sport;
@@ -57,6 +57,9 @@
 
     $scope.createEvent= function() {
       //to create the event here
+      eventService.createEvent("test").then(function(){
+        alert("here 222");
+      });
     };
   }
 })();
