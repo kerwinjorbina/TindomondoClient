@@ -6,12 +6,13 @@
     .controller('addEventController', addEventController);
 
   /** @ngInject */
-  function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService) {
+  function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService, googleAddress) {
     var vm = this;
     vm.date;
     vm.sport;
     vm.participants;
     vm.place;
+    vm.eventAddress;
 
     Facebook.api('/me', function(user) {
       $scope.$apply(function() {
@@ -39,7 +40,7 @@
       },
       events: {
         click: function (mapModel, eventName, originalEventArgs) {
-        vm.markers = [];
+                vm.markers = [];
                 var lat = originalEventArgs[0].latLng.lat();
                 var lng = originalEventArgs[0].latLng.lng();
                 var marker = {
@@ -50,16 +51,17 @@
                     }
                 };
                 vm.markers.push(marker);
-                vm.map.center.latitude = lat;
-                vm.map.center.longitude = lng;
+                //vm.map.center.latitude = lat;
+                //vm.map.center.longitude = lng;
                 //console.log($scope.map.markers);
+                googleAddress.getAddress(lat, lng).then(function successCallback(response) {
+                  vm.eventAddress = response.data.results[0].formatted_address;
+                });
                 $scope.$digest();
             }
       }
     };
-
-
-
+    
     vm.sports = [];
     sportService.getSports().then(function(sports_response){
       sports_response.data.forEach(function(sport) {
@@ -76,10 +78,6 @@
         alert("here 222");
       });
     };
-  
-
-
-  
 
     
     vm.marker = {
@@ -90,24 +88,6 @@
           },
           options: { draggable: false, visible: true},
     };
-    
-   
-   
-        
-        
-    /*vm.fillMap = fillMap;
-    function fillMap(coords) {
-      vm.marker.coords.latitude = coords.latitude;
-      vm.marker.coords.longitude = coords.longitude;
-      $scope.$apply();
-    }*/
-      
-    
-    /*vm.placeMarker = PlaceMarker;
-    function placeMarker(lat, lng) {
-          vm.marker.coords.latitude = lat;
-          vm.marker.coords.longitude = lng;
-        }*/
     }
 })();
 
