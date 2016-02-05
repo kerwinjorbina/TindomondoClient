@@ -12,16 +12,13 @@
         var event = $q.defer();
         $http({
           method: 'GET',
-          url: backendlink+'/events.json',
+          url: backendlink+'events.json',
           data: data
         }).then(function(data) {
           event.resolve(data);
         });
         return event.promise;
-      }
-    }
-
-    return {
+      },
       getEvent: function(data) {
         var event = $q.defer();
         $http({
@@ -32,21 +29,19 @@
           event.resolve(data);
         });
         return event.promise;
-      }
-    }
-
-    return {
+      },
       createEvent: function(data) {
-        alert("here 111");
+        console.log(data);
         var event = $q.defer();
         $http({
           method: 'POST',
-          url: backendlink+'/events',
+          url: backendlink+'events',
           data: data
         }).then(function(data) {
           event.resolve(data);
         });
         return event.promise;
+        
       }
     }
   }

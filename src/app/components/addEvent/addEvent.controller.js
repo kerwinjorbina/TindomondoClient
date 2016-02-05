@@ -12,6 +12,7 @@
     vm.sport;
     vm.participants;
     vm.place;
+    $scope.eventData = {};
 
     Facebook.api('/me', function(user) {
       $scope.$apply(function() {
@@ -46,11 +47,16 @@
       $scope.sports = vm.sports;
     });
 
-    $scope.createEvent= function() {
-      //to create the event here
-      eventService.createEvent("test").then(function(){
-        alert("here 222");
-      });
+    vm.createEvent = createEvent;
+
+    function createEvent() {
+      var start_date = new Date(vm.date);
+      var start_time = new Date(vm.time);
+      start_time = start_time.toTimeString();
+      start_time = (start_time.split(" "))[0];
+      var start = start_date.getFullYear() + "-" + (start_date.getMonth() + 1) + "-" + start_date.getDate() + " " + start_time;
+
+      eventService.createEvent({sport_id: vm.sport, start_time: start, duration: 2, registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.location});
     };
   }
 })();

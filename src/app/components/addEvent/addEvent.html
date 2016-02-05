@@ -1,8 +1,9 @@
-<form ng-submit="createEvent()">
+<div ng-controller="addEventController as controller">
+<form ng-submit="controller.createEvent()" >
 <div class="holder">
     <div ng-include="'app/components/navbar/navbar.html'"></div>
 </div>
-<div ng-controller="addEventController as controller" class="container">
+<div class="container">
     <div class="container content">
       <div class="row">
         <div class="col-md-12">
@@ -17,7 +18,7 @@
               <div class="fieldName">Date</div>
           </div>
           <div class="col-md-8">
-              <div class="fieldValue"><input type="date" ng-model="eventData.date"><input type="time" ng-model="eventData.time"></div>
+              <div class="fieldValue"><input type="date" ng-model="controller.date"><input type="time" ng-model="controller.time"></div>
           </div>
         </div>
         <div class="row">
@@ -26,7 +27,7 @@
           </div>
           <div class="col-md-8">
               <div class="fieldValue">
-                  <select ng-model="eventData.sport" ng-options="sport.id as sport.name for sport in sports">
+                  <select ng-model="controller.sport" ng-options="sport.id as sport.name for sport in sports">
                   </select>
               </div>
           </div>
@@ -37,7 +38,7 @@
           </div>
           <div class="col-md-8">
               <div class="fieldValue">
-                  <select ng-model="eventData.registration_limit" ng-options="n for n in [] | range:1:31">
+                  <select ng-model="controller.registration_limit" ng-options="n for n in [] | range:1:31">
                   </select>
               </div>
           </div>
@@ -48,7 +49,7 @@
           </div>
           <div class="col-md-8">
               <div class="fieldValue">
-                  <select ng-model="eventData.registration_min" ng-options="n for n in [] | range:1:31">
+                  <select ng-model="controller.registration_min" ng-options="n for n in [] | range:1:31">
                   </select>
               </div>
           </div>
@@ -60,7 +61,7 @@
               <div class="fieldName">Address</div>
           </div>
           <div class="col-md-8">
-            <div class="fieldValue"><input type="text" name="place" ng-model="eventData.location"></div>
+            <div class="fieldValue"><input type="text" name="place" ng-model="controller.location"></div>
           </div>
         </div>
         <div class="row">
@@ -78,3 +79,4 @@
   </div>
 </div>
 </form>
+</div>
