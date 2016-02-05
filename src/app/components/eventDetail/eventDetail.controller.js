@@ -6,7 +6,7 @@
     .controller('EventController', EventController);
 
   /** @ngInject */
-  function EventController($scope, $state, googleAddress, Facebook) {
+  function EventController($scope, $rootScope, $state, googleAddress, Facebook) {
     var vm = this;
     vm.eventName = "Event 1";
     vm.activity = "Football";
@@ -15,30 +15,15 @@
     vm.eventAddress = "Tartu Gym, Tartu Estonia";
     vm.eventParticipants = "11/22";
     vm.directionsService = new google.maps.DirectionsService();
-    vm.loggedIn = false;
-    vm.user = {};
 
     var lat = 0.0;
     var lng = 1.0;
 
-    Facebook.getLoginStatus(function(response) {
-      if (response.status == 'connected') {
-        vm.loggedIn = true;
-        vm.me();
-      } else {
-        $state.go('home');
-      }
-    });
-
-    vm.me = function() {
-      Facebook.api('/me', function(response) {
-
-        $scope.$apply(function() {
-          vm.user = response;
-        });
-
+    Facebook.api('/me', function(user) {
+      $scope.$apply(function() {
+        $rootScope.$broadcast('fbLoginHappened', user);
       });
-    };
+    });
 
     /*var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -99,7 +84,7 @@
       lng = position.coords.longitude;
 
       fillMap(position.coords);
-      
+
       googleAddress.getAddress(position.coords.latitude, position.coords.longitude).then(function successCallback(response) {
         vm.currentLocation = response.data.results[0].formatted_address;
       });
@@ -128,7 +113,7 @@
         zoomControl: true
       }
     };
-    
+
     vm.polylines = [{
       id: 0,
       path: [],
@@ -182,6 +167,12 @@
           };
         })
 
+        $scope.changeButton = function(){
+          if(document.getElementById('joinButton').textContent === 'JOIN') document.getElementById('joinButton').textContent = 'UNJOIN'
+          else document.getElementById('joinButton').textContent = 'JOIN';
+          if ($("#joinButton").attr('class') === 'unjoinButton') $("#joinButton").attr('class','joinButton')
+          else $("#joinButton").attr('class','unjoinButton');
+        };
 
    /* function showPosition(position) {
       var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)

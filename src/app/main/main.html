@@ -6,7 +6,9 @@
   </div>
   <div>
 
-    <button type="button" class="btn btn-primary btn-large loginButton" data-ng-show="!controller.logged" data-ng-disabled="!controller.facebookReady" data-ng-click="controller.IntentLogin()">Login with Facebook</button>
+    <button type="button" class="btn btn-primary btn-large loginButton" data-ng-show="!controller.logged"
+            data-ng-disabled="!controller.facebookReady && controller.buttonDisabled"
+            data-ng-click="controller.IntentLogin()">Login with Facebook</button>
 
   </div>
 </div>

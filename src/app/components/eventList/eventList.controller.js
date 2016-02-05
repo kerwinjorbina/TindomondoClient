@@ -6,38 +6,30 @@
     .controller('EventListController', EventListController);
 
   /** @ngInject */
-  function EventListController($scope, eventService, Facebook) {
+  function EventListController($scope, $rootScope, eventService, sportService, Facebook) {
     var vm = this;
     vm.events = [];
-    vm.loggedIn = false;
-    vm.user = {};
 
-    Facebook.getLoginStatus(function(response) {
-      if (response.status == 'connected') {
-        vm.loggedIn = true;
-        vm.me();
-      } else {
-        $state.go('home');
-      }
+    Facebook.api('/me', function(user) {
+      $scope.$apply(function() {
+        $rootScope.$broadcast('fbLoginHappened', user);
+      });
     });
 
-    vm.me = function() {
-      Facebook.api('/me', function(response) {
-
-        $scope.$apply(function() {
-          vm.user = response;
+    eventService.getEvents().then(function(response) {
+      var sports = [];
+      sportService.getSports().then(function(sports_response){
+        sports_response.data.forEach(function(sport) {
+          sports[sport.id] = sport.name;
         });
+        response.data.forEach(function(event) {
+          var datetime = new Date(event.start_time);
+          datetime = (datetime.getDate() + "-" + (datetime.getMonth() + 1) + "-" + datetime.getFullYear() + " " + datetime.toLocaleTimeString());
 
-      });
-    };
-
-    eventService.getEvents(1).then(function(response) {
-		response.data.forEach(function(event) {
-      var datetime = new Date(event.start_time);
-      datetime = (datetime.getDate() + "-" + (datetime.getMonth() + 1) + "-" + datetime.getFullYear() + " " + datetime.toLocaleTimeString());
-      vm.events.push(
-          {sport_name: event.sport_id, user_name: event.user_id, location: event.location, time: datetime}
-        );
+          vm.events.push(
+              {event_id: event.id, sport_name: sports[event.sport_id], user_name: event.user_id, location: event.location, time: datetime}
+          );
+        });
       });
       $scope.events = vm.events;
   	});
