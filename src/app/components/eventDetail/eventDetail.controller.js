@@ -6,14 +6,14 @@
     .controller('EventController', EventController);
 
   /** @ngInject */
-  function EventController($scope, $rootScope, $state, googleAddress, Facebook) {
+  function EventController($scope, $rootScope, $state, googleAddress, Facebook, eventService, $stateParams, sportService) {
     var vm = this;
-    vm.eventName = "Event 1";
-    vm.activity = "Football";
-    vm.eventDate = "04.02.2016";
-    vm.eventTime = "6:00 PM";
-    vm.eventAddress = "Tartu Gym, Tartu Estonia";
-    vm.eventParticipants = "11/22";
+    vm.eventName = null;
+    vm.activity = null;
+    vm.eventDate = null;
+    vm.eventTime = null;
+    vm.eventAddress = null;
+    vm.eventParticipants = null;
     vm.directionsService = new google.maps.DirectionsService();
 
     var lat = 0.0;
@@ -40,7 +40,35 @@
       alert("Geolocation is not supported by this browser.");
     }*/
 
-    vm.dep_marker = {
+ 
+
+        $scope.changeButton = function(){
+          if(document.getElementById('joinButton').textContent === 'JOIN') document.getElementById('joinButton').textContent = 'UNJOIN'
+          else document.getElementById('joinButton').textContent = 'JOIN';
+          if ($("#joinButton").attr('class') === 'unjoinButton') $("#joinButton").attr('class','joinButton')
+          else $("#joinButton").attr('class','unjoinButton');
+        };
+
+   /* function showPosition(position) {
+      var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+      vm.map.center.latitude = coord.lat();
+      vm.map.center.longitude = coord.lng();
+    }*/
+
+    eventService.getEvent($stateParams.id).then(function(response){
+      console.log(response);
+      sportService.getSport(response.data.sport_id).then(function(sport_response){
+        vm.activity = sport_response.data.name;
+      });
+      var datetime = new Date(response.data.start_time);
+      vm.eventDate = datetime.getDate() + "-" + (datetime.getMonth() + 1) + "-" + datetime.getFullYear();
+      vm.eventTime = datetime.toLocaleTimeString();
+      vm.eventAddress = response.data.location;
+      vm.eventParticipants = response.data.registration_limit;
+      vm.minParticipants = response.data.registration_min;
+
+
+     vm.dep_marker = {
       id: 0,
       coords: {
         latitude: 58.3783078,
@@ -72,7 +100,7 @@
       vm.dep_marker.coords.latitude = coords.latitude;
       vm.dep_marker.coords.longitude = coords.longitude;
       googleAddress.getAddress(vm.dest_marker.coords.latitude, vm.dest_marker.coords.longitude).then(function successCallback(response) {
-        vm.eventAddress = response.data.results[0].formatted_address;
+        vm.eventAddress = vm.eventAddress;
       });
       $scope.$apply();
     }
@@ -147,10 +175,10 @@
                 vm.dest_marker.coords.latitude,
                 vm.dest_marker.coords.longitude
               ),
-      	      travelMode: google.maps.TravelMode['WALKING'],
+              travelMode: google.maps.TravelMode['WALKING'],
               optimizeWaypoints: true
-      	    };
-      	  }
+            };
+          }
 
       vm.createPolylineRoute = createPolylineRoute;
           function createPolylineRoute(routeList) {
@@ -170,20 +198,7 @@
             createPolylineRoute(response.routes[0].overview_path);
           };
         })
-
-        $scope.changeButton = function(){
-          if(document.getElementById('joinButton').textContent === 'JOIN') document.getElementById('joinButton').textContent = 'UNJOIN'
-          else document.getElementById('joinButton').textContent = 'JOIN';
-          if ($("#joinButton").attr('class') === 'unjoinButton') $("#joinButton").attr('class','joinButton')
-          else $("#joinButton").attr('class','unjoinButton');
-        };
-
-   /* function showPosition(position) {
-      var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-      vm.map.center.latitude = coord.lat();
-      vm.map.center.longitude = coord.lng();
-    }*/
-
+    });
 
   }
 })();

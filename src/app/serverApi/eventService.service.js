@@ -23,8 +23,7 @@
         var event = $q.defer();
         $http({
           method: 'GET',
-          url: backendlink+'/api/events/1',
-          data: data
+          url: backendlink+'events/'+data+'.json',
         }).then(function(data) {
           event.resolve(data);
         });
