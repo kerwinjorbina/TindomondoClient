@@ -4,7 +4,7 @@
   "scripts": {
     "test": "gulp test",
     "build": "gulp",
-    "postinstall": "bower install --config.interactive=false && gulp build",
+    "postinstall": "bower install --config.interactive=false && gulp build && gulp serve:dist",
     "start": "gulp serve:dist"
   },
   "dependencies": {
