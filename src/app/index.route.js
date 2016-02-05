@@ -29,7 +29,7 @@
       }).state('preferences', {
         url: '/preferences',
         templateUrl: 'app/components/preferences/preverences.html',
-        controller: 'preferencesontroller'
+        controller: 'preferencesController'
       });
 
     $urlRouterProvider.otherwise('/');
