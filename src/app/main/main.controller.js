@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, $rootScope, $timeout, Facebook, $http) {
+  function MainController($scope, $rootScope, $timeout, Facebook, $http, $location) {
     var vm = this;
 
     // Define user empty data :/
@@ -38,6 +38,7 @@
         userIsConnected = true;
         vm.logged = true;
         vm.me();
+        $location.path('/eventList');
       }
     });
 
