@@ -8,7 +8,6 @@
   /** @ngInject */
   function addEventController($scope, $state, sportService) {
     var vm = this;
-    vm,
     vm.date;
     vm.sport;
     vm.participants;
@@ -39,7 +38,7 @@
     });
 
     $scope.createEvent= function() {
-      alert("submitted data");
+      //to create the event here
     };
     
   }
