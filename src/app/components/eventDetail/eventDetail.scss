@@ -1,13 +1,6 @@
 .angular-google-map-container { height:400px;}
-.content{
-  padding-top: 85px;
-}
-.title{
-  color:#FFFFFF;
-  font-family: 'Montserrat', sans-serif;
-  font-weight:bolder;
-  font-size: 72px;
-}
+
+
 .container{
     text-align: center;
 }
@@ -27,14 +20,12 @@
 }
 .unjoinButton{
   font-family: 'Montserrat', sans-serif;
-  height: 40px;
-  width: 160px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  width: 60px;
   background: #FF0000;
   color: #FFFFFF;
   font-weight:bold;
-  border-color: #FF0000;
+  border-color: none;
+  line-height: 300%;
 }
 .eventPanel{
   font-family: 'Montserrat', sans-serif;

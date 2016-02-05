@@ -14,7 +14,6 @@
     vm.eventTime = "6:00 PM";
     vm.eventAddress = "Tartu Gym, Tartu Estonia";
     vm.eventParticipants = "11/22";
-    vm.minParticipants = 2;
     vm.directionsService = new google.maps.DirectionsService();
     vm.user = {};
 
@@ -186,7 +185,6 @@
           if ($("#joinButton").attr('class') === 'unjoinButton') $("#joinButton").attr('class','joinButton')
           else $("#joinButton").attr('class','unjoinButton');
         };
-
 
    /* function showPosition(position) {
       var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
