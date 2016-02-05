@@ -20,12 +20,14 @@
 }
 .unjoinButton{
   font-family: 'Montserrat', sans-serif;
-  width: 60px;
+  height: 40px;
+  width: 160px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   background: #FF0000;
   color: #FFFFFF;
   font-weight:bold;
-  border-color: none;
-  line-height: 300%;
+  border-color: #FF0000;
 }
 .eventPanel{
   font-family: 'Montserrat', sans-serif;
