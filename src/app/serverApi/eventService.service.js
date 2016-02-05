@@ -34,6 +34,20 @@
         return event.promise;
       }
     }
+
+    return {
+      createEvent: function(data) {
+        var event = $q.defer();
+        $http({
+          method: 'POST',
+          url: backendlink+'/api/events',
+          data: data
+        }).then(function(data) {
+          event.resolve(data);
+        });
+        return event.promise;
+      }
+    }
   }
 
 })();
