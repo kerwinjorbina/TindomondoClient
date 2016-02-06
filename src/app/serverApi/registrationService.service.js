@@ -40,8 +40,20 @@
           registration.resolve(data);
         });
         return registration.promise;
+      },
+      getUserRegistrations: function(data) {
+        console.log(data);
+        var registration = $q.defer();
+        $http({
+          method: 'GET',
+          url: backendlink+'registrations/userevents?user_id='+data,
+          data: data
+        }).then(function(data) {
+          registration.resolve(data);
+        });
+        return registration.promise;
       }
     }
   }
-
+  
 })();
