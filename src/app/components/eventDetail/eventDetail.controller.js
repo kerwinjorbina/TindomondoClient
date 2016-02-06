@@ -97,6 +97,7 @@
       vm.eventAddress = response.data.location;
       vm.eventParticipants = response.data.registration_limit;
       vm.minParticipants = response.data.registration_min;
+      vm.event_id = $stateParams.id;
 
       registrationService.getEventParticipants($stateParams.id).then(function(registration_response){
         vm.registeredParticipants = registration_response.data.count;

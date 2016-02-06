@@ -58,6 +58,17 @@
             }
           });
         }]
+      }).state('eventParticipants', {
+        url: '/eventParticipants/:id',
+        templateUrl: 'app/components/eventParticipants/eventParticipants.html',
+        controller: 'EventParticipantsController',
+        onEnter: ['$state', 'Facebook', function($state, Facebook) {
+          Facebook.getLoginStatus(function(response) {
+            if (response.status != 'connected') {
+              $state.go('home');
+            }
+          });
+        }]
       })
 
     $urlRouterProvider.otherwise('/');
