@@ -43,17 +43,32 @@
     var user_id = $cookieStore.get('user_id');
 
     registrationService.getUserEvents({event_id: $stateParams.id, user_id: user_id}).then(function(response){
-      vm.joinDisplay = response.data.id != null;
+      vm.joinDisplay = response.data == "null";
+      if(!vm.joinDisplay){
+        $("#joinButton").attr('class','unjoinButton');
+        $("#joinButton").html('UNJOIN');
+      }
+      else{
+        $("#joinButton").attr('class','joinButton');
+        $("#joinButton").html('JOIN');
+      }
     });
-    
-    $scope.joinEvent = function(){
-      registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});
-      vm.joinDisplay = false;
-    };
 
-    $scope.unjoinEvent = function(){
-      registrationService.unjoinEvent({event_id: $stateParams.id, user_id: user_id});
-      vm.joinDisplay = true;
+    $scope.changeButton = function(){
+
+      if(document.getElementById('joinButton').textContent === 'JOIN') 
+        document.getElementById('joinButton').textContent = 'UNJOIN'
+      else 
+        document.getElementById('joinButton').textContent = 'JOIN';
+
+      if ($("#joinButton").attr('class') === 'unjoinButton') {
+        $("#joinButton").attr('class','joinButton');
+        registrationService.unjoinEvent({event_id: $stateParams.id, user_id: user_id});
+      }
+      else {
+        $("#joinButton").attr('class','unjoinButton');
+        registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});
+      }
     };
    /* function showPosition(position) {
       var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)

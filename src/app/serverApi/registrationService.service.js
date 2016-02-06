@@ -46,7 +46,7 @@
         var registration = $q.defer();
         $http({
           method: 'POST',
-          url: backendlink+'unjoin',
+          url: backendlink+'registrations/unjoin',
           data: data
         }).then(function(data) {
           registration.resolve(data);
