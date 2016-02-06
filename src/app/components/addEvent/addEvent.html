@@ -1,27 +1,21 @@
+<div ng-include="'app/components/navbar/navbar.html'"></div>
 <div ng-controller="addEventController as controller">
 <form name="userForm"  ng-submit="controller.createEvent()" >
 <div class="holder">
-    <div ng-include="'app/components/navbar/navbar.html'"></div>
-</div>
-
-<div ng-controller="addEventController as controller" class="container">
-    <md-whiteframe flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout="column" layout-align="center center">
-      <div layout="row">
-        <div flex="100" >
-
-          <div class="title">
+ <div class="title">
             Make an event
-          </div>
-        </div>
-      </div>
+  </div>
 
-      <div layout="column" class="panel panel-default createEventPanel topCreateEventPanel addForm">
+<div class="container">
+    <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
+    
+      <div layout="column">
 
-        <div layout-gt-xs="row">
+        <div layout="row">
 
           <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date">
           </md-datepicker>
-          <md-input-container class="md-block" flex-gt-xs>
+          <md-input-container class="md-block">
             <label>Time (HH)</label>
             <input type="time" name="hours" ng-model="controller.hour"
                    required  minlength="2" md-maxlength="2">
@@ -97,14 +91,14 @@
 
         </div>
 
-      </div>
-      <div class="panel panel-default eventPanel">
+      </md-whiteframe>
+      <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column" layout="column">
         <div layout="row">
-          <div flex="33" class="fieldName">
+          <div flex="40" class="fieldName">
               Address
           </div>
 
-          <div flex="67" class="fieldValue">
+          <div flex="60" class="fieldValue">
               {{controller.eventAddress}}
 
           </div>
@@ -117,11 +111,13 @@
             </ui-gmap-google-map>
           </div>
         </div>
-      </div>
+      </md-whiteframe>
       <div layout="row joinButtonBox">
         <button id="joinButton" type="submit" class = "btn btn-default joinButton">CREATE</button>
       </div>
-  </md-whiteframe>
+  
+</div>
 </div>
 </form>
+
 </div>
