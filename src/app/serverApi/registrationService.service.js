@@ -75,6 +75,18 @@
           registration.resolve(data);
         });
         return registration.promise;
+      },
+      getEventParticipants: function(data) {
+        console.log(data);
+        var registration = $q.defer();
+        $http({
+          method: 'GET',
+          url: backendlink+'registrations/eventparticipants?event_id='+data,
+          data: data
+        }).then(function(data) {
+          registration.resolve(data);
+        });
+        return registration.promise;
       }
     }
   }

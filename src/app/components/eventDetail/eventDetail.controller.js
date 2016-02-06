@@ -14,6 +14,7 @@
     vm.eventTime = null;
     vm.eventAddress = null;
     vm.eventParticipants = null;
+    vm.registeredParticipants = null;
     vm.joinDisplay = true;
     vm.directionsService = new google.maps.DirectionsService();
 
@@ -63,12 +64,21 @@
 
       if ($("#joinButton").attr('class') === 'unjoinButton') {
         $("#joinButton").attr('class','joinButton');
+        vm.registeredParticipants -= 1;
         registrationService.unjoinEvent({event_id: $stateParams.id, user_id: user_id});
       }
       else {
-        $("#joinButton").attr('class','unjoinButton');
-        registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});
+        if(vm.registeredParticipants == vm.eventParticipants){
+          alert("Number of Participants has reached its limit");
+        }
+        else{
+          vm.registeredParticipants += 1;
+          $("#joinButton").attr('class','unjoinButton');
+          registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});          
+        }
+
       }
+      $("#registered_participants").html(vm.registeredParticipants);
     };
    /* function showPosition(position) {
       var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
@@ -87,6 +97,10 @@
       vm.eventAddress = response.data.location;
       vm.eventParticipants = response.data.registration_limit;
       vm.minParticipants = response.data.registration_min;
+
+      registrationService.getEventParticipants($stateParams.id).then(function(registration_response){
+        vm.registeredParticipants = registration_response.data.count;
+      });
 
      vm.dep_marker = {
       id: 0,
