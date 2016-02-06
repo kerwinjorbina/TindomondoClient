@@ -25,10 +25,10 @@
         });
       response.data.forEach(function(event) {
         eventService.getEvent(event.event_id).then(function(event_response){
-        var datetime = new Date(event.start_time);
+        var datetime = new Date(event_response.data.start_time);
           datetime = (datetime.getDate() + "-" + (datetime.getMonth() + 1) + "-" + datetime.getFullYear() + " " + datetime.toLocaleTimeString());
           vm.events.push(
-              {event_id: event.id, sport_name: sports[event.sport_id], user_name: event.user_id, location: event.location, time: datetime} ); 
+              {event_id: event.event_id, sport_name: sports[event_response.data.sport_id], user_name: event_response.data.user_id, location: event_response.data.location, time: datetime} ); 
         });
       });
       console.log(vm.events);
