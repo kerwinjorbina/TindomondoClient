@@ -41,17 +41,9 @@
     }*/
 
     
-    $scope.changeButton = function(){
+    $scope.joinEvent = function(){
       var user_id = $cookieStore.get('user_id');
-      if(document.getElementById('joinButton').textContent === 'JOIN') document.getElementById('joinButton').textContent = 'UNJOIN'
-      else document.getElementById('joinButton').textContent = 'JOIN';
-      if ($("#joinButton").attr('class') === 'unjoinButton') {
-        $("#joinButton").attr('class','joinButton');
-      }
-      else {
-        $("#joinButton").attr('class','unjoinButton');
-        registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});
-      }
+      registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});
     };
 
    /* function showPosition(position) {
