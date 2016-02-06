@@ -6,7 +6,7 @@
     .controller('EventController', EventController);
 
   /** @ngInject */
-  function EventController($scope, $rootScope, $state, googleAddress, Facebook, eventService, $stateParams, sportService) {
+  function EventController($scope, $rootScope, $state, googleAddress, Facebook, eventService, $stateParams, sportService, $cookieStore, registrationService) {
     var vm = this;
     vm.eventName = null;
     vm.activity = null;
@@ -40,14 +40,19 @@
       alert("Geolocation is not supported by this browser.");
     }*/
 
- 
-
-        $scope.changeButton = function(){
-          if(document.getElementById('joinButton').textContent === 'JOIN') document.getElementById('joinButton').textContent = 'UNJOIN'
-          else document.getElementById('joinButton').textContent = 'JOIN';
-          if ($("#joinButton").attr('class') === 'unjoinButton') $("#joinButton").attr('class','joinButton')
-          else $("#joinButton").attr('class','unjoinButton');
-        };
+    
+    $scope.changeButton = function(){
+      var user_id = $cookieStore.get('user_id');
+      if(document.getElementById('joinButton').textContent === 'JOIN') document.getElementById('joinButton').textContent = 'UNJOIN'
+      else document.getElementById('joinButton').textContent = 'JOIN';
+      if ($("#joinButton").attr('class') === 'unjoinButton') {
+        $("#joinButton").attr('class','joinButton');
+      }
+      else {
+        $("#joinButton").attr('class','unjoinButton');
+        registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});
+      }
+    };
 
    /* function showPosition(position) {
       var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
@@ -79,7 +84,6 @@
       events: {
       }
     };
-
 
    vm.dest_marker = {
       id: 1,
