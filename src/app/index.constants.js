@@ -6,5 +6,4 @@
     .module('client')
     .constant('moment', moment)
     .constant('backendlink', "http://tindomondo.com:3000/");
-    //.constant('backendlink', "http://api.tindomondo.com/");
 })();

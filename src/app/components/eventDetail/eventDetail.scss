@@ -1,6 +1,11 @@
 .angular-google-map-container { height:400px;}
 
 
+.title{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 54px;
+  text-align: center;
+}
 .container{
     text-align: center;
 }
@@ -31,10 +36,11 @@
 }
 .eventPanel{
   font-family: 'Montserrat', sans-serif;
-  width: 500px;
   margin:0 auto;
   line-height: 300%;
   padding: 0px;
+  background: #FFFFFF;
+  border-radius: 5px;
   
 }
 .topEventPanel{

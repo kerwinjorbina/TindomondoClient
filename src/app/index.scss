@@ -32,6 +32,11 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
     font-size: 50px;
 }
 
+html {
+  background-color: transparent;
+}
+
+
 body {
 	background-image: url("./../assets/images/landing.jpg");
   -webkit-background-size: cover;
