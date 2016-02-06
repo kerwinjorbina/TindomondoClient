@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="holder">
+    <div ng-include="'app/components/navbar/navbar.html'"></div>
+  </div>
+  <div class="acme-navbar-text">
+    <h1><strong>Event Participants</strong></h1>
+  </div>
+  <div>
+    <div class="panel" ng-repeat="participant in participants">
+      <div class="panel-body">
+        <div class="row">
+          <div><h3><strong>{{participant.name}}</strong></h3></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
