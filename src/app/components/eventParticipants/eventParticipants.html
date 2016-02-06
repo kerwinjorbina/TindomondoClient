@@ -6,11 +6,9 @@
     <h1><strong>Event Participants</strong></h1>
   </div>
   <div>
-    <div class="panel" ng-repeat="participant in participants">
-      <div class="panel-body">
-        <div class="row">
-          <div><h3><strong>{{participant.name}}</strong></h3></div>
-        </div>
+    <div class="panel">
+      <div class="panel-body" ng-repeat="participant in participants">
+          <div><img src="{{participant.picture}}" alt="{{participant.name}}" title="{{participant.name}}" style="width:50px;height:50px;"></div>
       </div>
     </div>
   </div>

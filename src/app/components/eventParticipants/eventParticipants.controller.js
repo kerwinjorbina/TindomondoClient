@@ -29,8 +29,19 @@
       response.data.forEach(function(registration) {
         console.log(registration);
         userService.getUser(registration.user_id).then(function(user_response){
-          vm.participants.push(
-              {name: user_response.data.name, registration_time: registration.created_at} ); 
+          Facebook.api('/'+user_response.data.fb_id, function(facebook_data) {
+            Facebook.api("/"+user_response.data.fb_id+"/picture?type=small", function (response2) {
+              if (response2 && !response2.error) {
+                vm.participants.push(
+                    {name: user_response.data.name, picture: response2.data.url} ); 
+              }
+              else{
+                vm.participants.push(
+                    {name: user_response.data.name, picture: "http://style.anu.edu.au/_anu/4/images/placeholders/person.png"} ); 
+              }
+            });
+          });
+
         });
       });
       $scope.participants = vm.participants;
