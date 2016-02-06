@@ -132,6 +132,7 @@
       vm.map.center.longitude = coords.longitude;
       vm.dep_marker.coords.latitude = coords.latitude;
       vm.dep_marker.coords.longitude = coords.longitude;
+      vm.eventDescription;
       $scope.$apply();
     }
 
