@@ -3,41 +3,52 @@
 
   angular
     .module('client')
-    .service('eventService', eventService);
+    .service('userService', userService);
 
   /** @ngInject */
-  function eventService($http, $q, backendlink) {
+  function userService($http, $q, backendlink) {
     return {
-      getEvents: function(data) {
+      getUsers: function(data) {
         var event = $q.defer();
         $http({
           method: 'GET',
-          url: backendlink+'events.json',
+          url: backendlink+'users.json',
           data: data
         }).then(function(data) {
           event.resolve(data);
         });
         return event.promise;
       },
-      getEvent: function(data) {
+      getUser: function(data) {
         var event = $q.defer();
         $http({
           method: 'GET',
-          url: backendlink+'events/'+data+'.json',
+          url: backendlink+'users/'+data+'.json',
         }).then(function(data) {
           event.resolve(data);
         });
         return event.promise;
       },
-      createEvent: function(data) {
+      getUserByFbId: function(data) {
+        var event = $q.defer();
+        $http({
+          method: 'GET',
+          url: backendlink+'users/fbid/'+data,
+        }).then(function(data) {
+          event.resolve(data);
+        });
+        return event.promise;
+      },
+      createUser: function(data) {
         console.log(data);
         var event = $q.defer();
         $http({
           method: 'POST',
-          url: backendlink+'events',
+          url: backendlink+'users.json',
           data: data
         }).then(function(data) {
           event.resolve(data);
+          return data;
         });
         return event.promise;
         
