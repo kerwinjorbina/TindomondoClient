@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+.addForm{
+    padding-top: 10px;
+}
+
 .title{
   color:#FFFFFF;
   font-family: 'Montserrat', sans-serif;
@@ -30,9 +34,9 @@
   margin:0 auto;
   line-height: 300%;
   padding: 0px;
-  
-  
-  
+
+
+
 }
 .topCreateEventPanel{
   font-family: 'Montserrat', sans-serif;
@@ -62,5 +66,5 @@ p {
   .datepickerdemoBasicUsage .validation-messages {
     font-size: 11px;
     color: darkred;
-    margin: 10px 0 0 25px; 
+    margin: 10px 0 0 25px;
   }

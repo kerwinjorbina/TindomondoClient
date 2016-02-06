@@ -8,15 +8,15 @@
   /** @ngInject */
   function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService, googleAddress) {
     var vm = this;
-    vm.date;
-    vm.sport;
+    vm.hour = null;
+    vm.minute = null;
+    vm.sport = {};
     vm.participants;
     vm.place;
     $scope.eventData = {};
     vm.eventAddress = "Choose location on map";
-  
-  
-  
+
+
     Facebook.api('/me', function(user) {
       $scope.$apply(function() {
         $rootScope.$broadcast('fbLoginHappened', user);
@@ -24,10 +24,10 @@
     });
 
     vm.directionsService = new google.maps.DirectionsService();
-    
+
     vm.markers = [];
     vm.markers.push(vm.marker);
-    
+
     vm.map = {
       center: {
         latitude : 58.3661916,
@@ -64,7 +64,7 @@
             }
       }
     };
-    
+
     vm.sports = [];
     sportService.getSports().then(function(sports_response){
       sports_response.data.forEach(function(sport) {
@@ -75,6 +75,10 @@
       $scope.sports = vm.sports;
     });
 
+    function convertTime() {
+
+    }
+
     vm.createEvent = createEvent;
 
     function createEvent() {
@@ -84,11 +88,11 @@
       start_time = (start_time.split(" "))[0];
       var start = start_date.getFullYear() + "-" + (start_date.getMonth() + 1) + "-" + start_date.getDate() + " " + start_time;
 
-      eventService.createEvent({sport_id: vm.sport, start_time: start, duration: 2, registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.location});
+      eventService.createEvent({sport_id: vm.sport.id, start_time: start, duration: 2, registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.location});
     };
-    
 
-    
+
+
     vm.marker = {
           id: 0,
           coords: {
