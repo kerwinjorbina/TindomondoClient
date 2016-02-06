@@ -14,6 +14,7 @@
     vm.eventTime = null;
     vm.eventAddress = null;
     vm.eventParticipants = null;
+    vm.joinDisplay = true;
     vm.directionsService = new google.maps.DirectionsService();
 
     var lat = 0.0;
@@ -39,13 +40,21 @@
     } else {
       alert("Geolocation is not supported by this browser.");
     }*/
+    var user_id = $cookieStore.get('user_id');
 
+    registrationService.getUserEvents({event_id: $stateParams.id, user_id: user_id}).then(function(response){
+      vm.joinDisplay = response.data.id != null;
+    });
     
     $scope.joinEvent = function(){
-      var user_id = $cookieStore.get('user_id');
       registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});
+      vm.joinDisplay = false;
     };
 
+    $scope.unjoinEvent = function(){
+      registrationService.unjoinEvent({event_id: $stateParams.id, user_id: user_id});
+      vm.joinDisplay = true;
+    };
    /* function showPosition(position) {
       var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
       vm.map.center.latitude = coord.lat();
