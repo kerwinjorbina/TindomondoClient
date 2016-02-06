@@ -42,11 +42,7 @@ function browserSyncInit(baseDir, browser) {
   browserSync.instance = browserSync.init({
     startPath: '/',
     server: server,
-    browser: browser,
-<<<<<<< Updated upstream
-    port: 8080
-=======
->>>>>>> Stashed changes
+    browser: browser
   });
 }
 
