@@ -72,7 +72,6 @@
       vm.eventParticipants = response.data.registration_limit;
       vm.minParticipants = response.data.registration_min;
 
-
      vm.dep_marker = {
       id: 0,
       coords: {

@@ -47,7 +47,6 @@
         $http({
           method: 'GET',
           url: backendlink+'registrations/userevents?user_id='+data,
-          data: data
         }).then(function(data) {
           registration.resolve(data);
         });
@@ -55,5 +54,4 @@
       }
     }
   }
-  
 })();
