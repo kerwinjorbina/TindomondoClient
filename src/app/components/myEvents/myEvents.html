@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="holder">
+    <div ng-include="'app/components/navbar/navbar.html'"></div>
+  </div>
+  <div class="acme-navbar-text">
+    <h1><strong>My Events</strong></h1>
+  </div>
+  <div>
+    <div class="panel"  ng-repeat="event in events">
+      <a href="/#/eventDetail/{{event.event_id}}">
+        <div class="panel-body">
+          <div class="row vertical-divider">
+            <div class="col-xs-6"><h2><strong>{{event.sport_name}}</strong></h2></div>
+            <div class="col-xs-6"><h4>{{event.time}}</h4>
+                <h4><small>{{event.location}}</small></h4></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
