@@ -65,7 +65,6 @@
       }
     };
 
-
     sportService.getSports().then(function(sports_response){
       vm.sports = [];
       sports_response.data.forEach(function(sport) {
