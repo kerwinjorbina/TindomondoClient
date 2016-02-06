@@ -8,6 +8,7 @@
 
 var gulp = require('gulp');
 var wrench = require('wrench');
+var rsync = require('gulp-rsync');
 
 /**
  *  This will load all js or coffee files in the gulp directory
@@ -28,10 +29,11 @@ gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
-gulp.task('serveprod', function() {
-  connect.server({
-    root: '/',
-    port: process.env.PORT || 5000, // localhost:5000
-    livereload: false
-  });
+gulp.task('deploy', function() {
+  gulp.src('dist/**')
+    .pipe(rsync({
+      root: '.',
+      hostname: 'TindoAdmin@tindomondo.com',
+      destination: '~/production'
+    }));
 });

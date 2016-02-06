@@ -65,14 +65,14 @@
       }
     };
 
-    vm.sports = [];
+
     sportService.getSports().then(function(sports_response){
+      vm.sports = [];
       sports_response.data.forEach(function(sport) {
         vm.sports.push(
             {id: sport.id, name: sport.name}
         );
       });
-      $scope.sports = vm.sports;
     });
 
     function convertTime() {
@@ -88,7 +88,10 @@
       start_time = (start_time.split(" "))[0];
       var start = start_date.getFullYear() + "-" + (start_date.getMonth() + 1) + "-" + start_date.getDate() + " " + start_time;
 
-      eventService.createEvent({sport_id: vm.sport.id, start_time: start, duration: 2, registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.location});
+      var eventData = {sport_id: vm.sport.id, start_time: start, duration: 2,
+        registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.location};
+      console.log("Event data: ", eventData);
+      eventService.createEvent(eventData);
     };
 
 

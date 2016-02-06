@@ -50,11 +50,10 @@
 
 
         <div layout-gt-sm="row">
-
             <md-input-container class="md-block" flex-gt-sm>
               <label>Sport</label>
               <md-select ng-model="controller.sport">
-                <md-option ng-repeat="sport in controller.sports" value="sport">
+                <md-option ng-repeat="sport in controller.sports" ng-value="sport">
                   {{sport.name}}
                 </md-option>
               </md-select>
