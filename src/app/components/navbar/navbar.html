@@ -4,9 +4,8 @@
     <ul class="nav navmenu-nav">
       <li data-ng-show="controller.profilePicImage"><img data-ng-show="controller.profilePicImage" src="{{controller.profilePicImage}}" alt=""/></li>
       <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady">{{controller.user.name}}</li>
-      <li class="active"><a href="#">Profile</a></li>
+      <li class="active"><a href="/#/">Events Nearby</a></li>
       <li><a href="/#/myEvents">My Events</a></li>
-      <li><a href="#">Settings</a></li>
       <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" data-ng-click="controller.logout()"><a href="#">Sign Out</a></li>
 
     </ul>
