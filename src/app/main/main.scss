@@ -6,6 +6,7 @@
   background-color: #2e9789;
 }
 
+<<<<<<< Updated upstream
 //.mainbg {
 //  background-image: url("./../assets/images/landing.jpg");
 //  -webkit-background-size: cover;
@@ -16,3 +17,38 @@
 //  background-attachment: fixed;
 //  background-color: red;
 //}
+=======
+.mainbg {
+  background-image: url("./../assets/images/landing.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.citation{
+  font-size: 20px;
+  color:white;
+  text-align:right;
+  padding-top:60px;
+  font-family: 'Montserrat', sans-serif;
+}
+.text{
+  font-size: 30px;
+  color:white;
+  text-align:right;
+  font-family: 'Montserrat', sans-serif;
+}
+.name{
+  font-size: 15px;
+  padding-top:25px;
+  color:white;
+  text-align:right;
+  font-family: 'Montserrat', sans-serif;
+}
+.but{
+  padding-top: 50px;
+  text-align: right;
+}
+>>>>>>> Stashed changes

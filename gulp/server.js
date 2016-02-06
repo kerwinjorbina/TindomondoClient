@@ -43,7 +43,10 @@ function browserSyncInit(baseDir, browser) {
     startPath: '/',
     server: server,
     browser: browser,
+<<<<<<< Updated upstream
     port: 8080
+=======
+>>>>>>> Stashed changes
   });
 }
 
