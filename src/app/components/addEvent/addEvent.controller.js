@@ -8,7 +8,7 @@
   /** @ngInject */
   function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService, googleAddress, $cookieStore) {
     var vm = this;
-    vm.hour = null;
+    vm.time = null;
     vm.minute = null;
     vm.sport = {};
     vm.participants;
@@ -88,8 +88,8 @@
       start_time = (start_time.split(" "))[0];
       var start = start_date.getFullYear() + "-" + (start_date.getMonth() + 1) + "-" + start_date.getDate() + " " + start_time;
 
-      var eventData = {user_id: $cookieStore.get('user_id'), sport_id: vm.sport.id, start_time: start, duration: 2,
-        registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.location, description: vm.description};
+      var eventData = {user_id: $cookieStore.get('user_id'), sport_id: vm.sport, start_time: start, duration: 2,
+        registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.eventAddress, description: vm.description};
       console.log("Event data: ", eventData);
       eventService.createEvent(eventData);
     };
