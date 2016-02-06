@@ -47,7 +47,18 @@
             }
           });
         }]
-      });
+      }).state('myEvents', {
+        url: '/myEvents',
+        templateUrl: 'app/components/myEvents/myEvents.html',
+        controller: 'myEventsController',
+        onEnter: ['$state', 'Facebook', function($state, Facebook) {
+          Facebook.getLoginStatus(function(response) {
+            if (response.status != 'connected') {
+              $state.go('home');
+            }
+          });
+        }]
+      })
 
     $urlRouterProvider.otherwise('/');
   }
