@@ -1,8 +1,6 @@
 .angular-google-map-container { height:400px;}
 
-.content{
-  padding-top: 85px;
-}
+
 .panel{
     text-align: center;
 }
@@ -51,10 +49,18 @@ p {
 .fieldName{
   text-align:left;
   margin-left: 10px;
-  border-right: 1px solid #ccc;
+  //border-right: 1px solid #ccc;
 }
 .fieldValue{
   margin-left: 10px;
   text-align:left;
 }
-
+.datepickerdemoBasicUsage {
+  /** Demo styles for mdCalendar. */ }
+  .datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px; }
+  .datepickerdemoBasicUsage .validation-messages {
+    font-size: 11px;
+    color: darkred;
+    margin: 10px 0 0 25px; 
+  }
