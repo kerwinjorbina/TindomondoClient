@@ -14,7 +14,9 @@
     vm.place;
     $scope.eventData = {};
     vm.eventAddress = "Choose location on map";
-
+  
+  
+  
     Facebook.api('/me', function(user) {
       $scope.$apply(function() {
         $rootScope.$broadcast('fbLoginHappened', user);
