@@ -53,12 +53,10 @@
     "rsyncwrapper": "^1.0.0",
     "uglify-save-license": "~0.4.1",
     "wiredep": "~2.2.2",
-    "wrench": "~1.5.8"
+    "wrench": "~1.5.8",
+    "minimist": "^1.2.0"
   },
   "engines": {
     "node": ">=0.12.0"
-  },
-  "devDependencies": {
-    "gulp-rsync": "0.0.5"
   }
 }
