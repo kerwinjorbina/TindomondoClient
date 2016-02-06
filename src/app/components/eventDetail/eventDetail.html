@@ -16,11 +16,11 @@
             {{controller.eventDate + " " + controller.eventTime}}
         </div>
       </div>
-      <div layout="row" layout-xs="column">
+      <div layout="row">
         <div flex="40" class="fieldName">
-            Sport
+          Sport
         </div>
-        <div flex="60">
+        <div flex="60" class="fieldValue">
             {{controller.activity}}
         </div>
       </div>
@@ -29,7 +29,7 @@
             Participants
         </div>
         <div flex="60" class="fieldValue">
-            <div class="fieldValue"><strong id="registered_participants">{{controller.registeredParticipants}}</strong>/<strong id="total_participants">{{controller.eventParticipants}}</strong></div>
+            <strong id="registered_participants">{{controller.registeredParticipants}}</strong>/<strong id="total_participants">{{controller.eventParticipants}}</strong>
         </div>
       </div>
       <div layout="row">
