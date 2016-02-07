@@ -1,15 +1,17 @@
 <md-toolbar ng-cloak>
-  <div class="md-toolbar-tools">
-    <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings" hide-gt-sm="">
-      <md-icon md-font-library="material-icons">menu</md-icon>
+  <div class="md-toolbar-tools" ng-controller="NavbarController as controller">
+    <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Menu" hide-gt-sm="">
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
     </md-button>
     <h2>
       <span>Tindomondo</span>
     </h2>
     <span flex></span>
-    <md-button class="md-icon-button" aria-label="Add" id="search_address">
-      <md-icon md-font-library="material-icons">add</md-icon>
+    <a data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" href="/#/addEvent" href="/#/addEvent">
+    <md-button class="md-icon-button" aria-label="Add Event">
+      <span class="glyphicon glyphicon-plus"></span>
     </md-button>
+    </a>
   </div>
 </md-toolbar>
 
