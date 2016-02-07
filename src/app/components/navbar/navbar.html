@@ -1,36 +1,17 @@
-<div class = "container">
-<div ng-controller="NavbarController as controller">
-  <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
-    <div class="navmenu-brand">Tindomondo</div>
-    <ul class="nav navmenu-nav">
-      <li data-ng-show="controller.profilePicImage"><img data-ng-show="controller.profilePicImage" src="{{controller.profilePicImage}}" alt=""/></li>
-      <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady">{{controller.user.name}}</li>
-      <li class="active"><a href="/#/">Events Nearby</a></li>
-      <li><a href="/#/myEvents">My Events</a></li>
-      <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" data-ng-click="controller.logout()"><a href="#">Sign Out</a></li>
-    </ul>
-  </nav>
-  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"><span class="glyphicon glyphicon-menu-hamburger"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="navbar-icon navbar-toggle" data-target=".navbar-collapse">
-          <span data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" href="/#/addEvent" class="glyphicon glyphicon-plus"></span>
-        </a>
-        <div class = "centered">
-          <img src="assets/images/tindo_logo.png" alt="Tindomondo" style="width:150px; height:14px;">
-        </div>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" href="/#/addEvent" class="navbar-icon navbar-toggle" href="/#/addEvent"><span class="glyphicon glyphicon-plus"></span></a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
-</div>
+<md-toolbar ng-cloak>
+  <div class="md-toolbar-tools">
+    <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings" hide-gt-sm="">
+      <md-icon md-font-library="material-icons">menu</md-icon>
+    </md-button>
+    <h2>
+      <span>Tindomondo</span>
+    </h2>
+    <span flex></span>
+    <md-button class="md-icon-button" aria-label="Add" id="search_address">
+      <md-icon md-font-library="material-icons">add</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+
+
+

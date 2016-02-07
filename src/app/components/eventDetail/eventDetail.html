@@ -1,11 +1,7 @@
-<div ng-include="'app/components/navbar/navbar.html'"></div>
-<div ng-controller="EventController as controller" class="container">
-<div class="container content">
-  <div class="holder">
+<div ng-controller="EventController as controller" class="column">
   <div class="row">
     <p class="title">Join an event</p>
   </div>
-  <div class="container">
     <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
     <!--<div class="column panel panel-default eventPanel topEventPanel">-->
       <div layout="row">
@@ -69,10 +65,9 @@
           </div>
         </div>
     </md-whiteframe>
-    <div flex="100">
+    <div layout="column" flex="100" layout-align="top center">
+      <div>
       <md-button id="joinButton" type="button" class = "btn btn-default joinButton" ng-click="changeButton()">JOIN</md-button>
-    </div>
+      </div>
   </div>
-  </div>
-</div>
 </div>
