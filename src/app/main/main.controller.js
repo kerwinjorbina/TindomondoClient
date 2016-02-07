@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, $rootScope, $timeout, Facebook, $http, $location, userService, $cookieStore) {
+  function MainController($scope, $rootScope, $route, $timeout, Facebook, $http, $location, userService, $cookieStore) {
     var vm = this;
 
     // Define user empty data :/
@@ -101,6 +101,7 @@
           vm.user   = {};
           vm.logged = false;
           userIsConnected = false;
+          $route.reload();
         });
       });
     };
