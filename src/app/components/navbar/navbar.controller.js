@@ -6,7 +6,7 @@
     .controller('NavbarController', NavbarController);
 
   /** @ngInject */
-  function NavbarController($scope, $rootScope, $timeout, Facebook) {
+  function NavbarController($scope, $rootScope, $timeout, Facebook, $route) {
     var vm = this;
     vm.loggedIn = false;
     vm.user = {};
@@ -39,6 +39,7 @@
           vm.loggedIn = false;
           vm.profilePicImage = "";
           $rootScope.$broadcast('logOutHappened');
+          $route.reload();
         });
       });
     };

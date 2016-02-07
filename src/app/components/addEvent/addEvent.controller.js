@@ -89,14 +89,13 @@
 
       var eventData = {user_id: $cookieStore.get('user_id'), sport_id: vm.sport, start_time: start, duration: 2,
         registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.eventAddress, description: vm.description};
-      console.log("Event data: ", eventData);
       eventService.createEvent(eventData).then(function() {
         Notification.success('Event was created.');
         $timeout(function() {
           $state.go('myEvents');
         }, 2000);
       });
-    };
+    }
 
 
 

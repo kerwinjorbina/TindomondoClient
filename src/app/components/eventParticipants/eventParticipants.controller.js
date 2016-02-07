@@ -30,7 +30,7 @@
         console.log(registration);
         userService.getUser(registration.user_id).then(function(user_response){
           Facebook.api('/'+user_response.data.fb_id, function(facebook_data) {
-            Facebook.api("/"+user_response.data.fb_id+"/picture?type=small", function (response2) {
+            Facebook.api("/"+user_response.data.fb_id+"/picture?type=large", function (response2) {
               if (response2 && !response2.error) {
                 vm.participants.push(
                     {name: user_response.data.name, picture: response2.data.url} ); 
