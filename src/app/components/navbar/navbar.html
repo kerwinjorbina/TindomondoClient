@@ -1,36 +1,15 @@
-<div class = "container">
-<div ng-controller="NavbarController as controller">
-  <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
-    <div class="navmenu-brand">Tindomondo</div>
-    <ul class="nav navmenu-nav">
-      <li data-ng-show="controller.profilePicImage"><img data-ng-show="controller.profilePicImage" src="{{controller.profilePicImage}}" alt=""/></li>
-      <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady">{{controller.user.name}}</li>
-      <li class="active"><a href="/#/">Events Nearby</a></li>
-      <li><a href="/#/myEvents">My Events</a></li>
-      <li data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" data-ng-click="controller.logout()"><a href="#">Sign Out</a></li>
-    </ul>
-  </nav>
-  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"><span class="glyphicon glyphicon-menu-hamburger"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="navbar-icon navbar-toggle" data-target=".navbar-collapse">
-          <span data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" href="/#/addEvent" class="glyphicon glyphicon-plus"></span>
-        </a>
-        <div class = "centered">
-          <img src="assets/images/logo.svg" alt="Tindomondo" style="width:150px; height:14px;">
-        </div>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" href="/#/addEvent" class="navbar-icon navbar-toggle" href="/#/addEvent"><span class="glyphicon glyphicon-plus"></span></a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
-</div>
+<md-toolbar ng-cloak>
+  <div class="md-toolbar-tools" ng-controller="NavbarController as controller">
+    <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Menu" hide-gt-sm="">
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </md-button>
+    <span flex></span>
+    <img src="assets/images/tindo_logo.svg" alt="Tindomondo" style="height:17px;" />
+    <span flex></span>
+    <a data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" href="/#/addEvent" href="/#/addEvent">
+    <md-button class="md-icon-button" aria-label="Add Event">
+      <span class="glyphicon glyphicon-plus"></span>
+    </md-button>
+    </a>
+  </div>
+</md-toolbar>
