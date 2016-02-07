@@ -1,21 +1,19 @@
-<div class="container">
-  <div class="acme-navbar-text">
-    <h1><strong>Event Participants</strong></h1>
+<div>
+  <div class="row">
+    <p class="title">Event Participants</p>
   </div>
-  <div  ng-repeat="participant in participants">
-      <div flex-xs flex-gt-xs="50" layout="column">
-        <md-card>
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">{{participant.name}}</span>
-            </md-card-title-text>
-            <md-card-title-media>
-              <div class="md-media-lg card-media">
-                <img class='md-user-avatar' ng-src='{{participant.picture}}'></img>
-              </div>
-            </md-card-title-media>
-          </md-card-title>
-        </md-card>
-      </div>
+  <div layout="column" ng-repeat="participant in participants">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{participant.name}}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media">
+              <img class='md-user-avatar' ng-src='{{participant.picture}}'></img>
+            </div>
+          </md-card-title-media>
+        </md-card-title>
+      </md-card>
   </div>
 </div>
