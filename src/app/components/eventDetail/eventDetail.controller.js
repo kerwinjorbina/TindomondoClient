@@ -106,8 +106,8 @@
      vm.dep_marker = {
       id: 0,
       coords: {
-        latitude: 58.3783078,
-        longitude: 26.71467329999996
+        latitude: 58.366315,
+        longitude: 26.690522
       },
 
       options: { draggable: false, visible: true},
