@@ -6,7 +6,7 @@
     .controller('addEventController', addEventController);
 
   /** @ngInject */
-  function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService, googleAddress, $cookieStore, $location, Notification) {
+  function addEventController($scope, $timeout, $state, $rootScope, Facebook, sportService, eventService, googleAddress, $cookieStore, $location, Notification) {
     var vm = this;
     vm.time = null;
     vm.minute = null;
