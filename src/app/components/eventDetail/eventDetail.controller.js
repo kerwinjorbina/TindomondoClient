@@ -171,7 +171,7 @@
         longitude : vm.dep_marker.coords.longitude
       },
       bounds: new google.maps.LatLngBounds(),
-      zoom: 13,
+      zoom: 12,
       options: {
         mapTypeControl: true,
         panControl: true,
