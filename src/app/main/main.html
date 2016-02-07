@@ -1,19 +1,16 @@
 <div class="container" ng-controller="MainController as controller">
   <div class="holder">
-
+    <div ng-include="'app/components/navbar/navbar.html'"></div>
   </div>
   
-  
   <div>
-
       <div class = "text">Tindomondo helps you find<p>new companions for your<p>sport activities.</div>
-        <div class = "citation">'If Tindomondo had been there in<p>my childhood, me and the whole<p>Estonian basketball community
-                                <p>would definatelly have<p>benefited from it!'</div>
-          <div class = "name"><b>Tanel Sokk (TU/Rock)</b></div>
+        <div class = "citation">"If Tindomondo had been there in<p>my childhood, me and the whole<p>Estonian basketball community
+                                <p>would definitely have<p>benefited from it!"</div>
+          <div class = "name"><b>Tanel Sokk (BC TU/Rock)</b></div>
       
             <div class = "but"><button type="button" class="btn btn-default loginButton" data-ng-show="!controller.logged"
             data-ng-disabled="!controller.facebookReady && controller.buttonDisabled"
             data-ng-click="controller.IntentLogin()">Login with Facebook</button></div>
-
   </div>
 </div>
