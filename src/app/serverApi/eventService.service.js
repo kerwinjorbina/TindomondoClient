@@ -34,7 +34,7 @@
         var event = $q.defer();
         $http({
           method: 'POST',
-          url: backendlink+'events',
+          url: backendlink+'events.json',
           data: data
         }).then(function(data) {
           event.resolve(data);

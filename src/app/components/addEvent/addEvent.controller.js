@@ -94,9 +94,8 @@
         Notification.success('Event was created.');
         $timeout(function() {
           $state.go('myEvents');
-        }, 3000);
+        }, 2000);
       });
-      $location.path('/myEvents');
     };
 
 
