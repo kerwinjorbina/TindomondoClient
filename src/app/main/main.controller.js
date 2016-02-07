@@ -111,6 +111,7 @@
       vm.logged = false;
       userIsConnected = false;
       vm.buttonDisabled = false;
+      $route.reload();
     });
 
   }
