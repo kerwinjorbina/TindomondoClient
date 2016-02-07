@@ -8,7 +8,7 @@
 
 var gulp = require('gulp');
 var wrench = require('wrench');
-var rsync = require('rsyncwrapper');
+var rsync = require('gulp-rsync');
 var gutil = require('gulp-util');
 var push = require('git-push');
 var argv = require('minimist')(process.argv.slice(2));
@@ -33,17 +33,17 @@ gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
+
+
 gulp.task('deploy', function() {
-  rsync({
-    ssh: true,
-    src: './dist/',
-    dest: 'TindoAdmin@tindomondo.com:~/production',
-    recursive: true,
-    syncDest: true,
-    args: ['--verbose']
-  }, function(error, stdout, stderr, cmd) {
-    gutil.log(stdout);
-  });
+  gulp.src('dist/**')
+    .pipe(rsync({
+      root: 'dist',
+      hostname: 'tindomondo.com',
+      username: 'TindoAdmin',
+      destination: '~/production',
+      incremental: true
+    }));
 });
 
 gulp.task('rsync', function() {

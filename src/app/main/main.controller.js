@@ -86,6 +86,7 @@
         $scope.$apply(function() {
           vm.user = response;
           $rootScope.$broadcast('fbLoginHappened', vm.user);
+          $location.path('/eventList');
         });
 
       });
