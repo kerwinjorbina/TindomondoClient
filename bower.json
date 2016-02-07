@@ -19,7 +19,7 @@
     "angular": "~1.5.0",
     "AngularDevise": "angular-devise#~1.1.0",
     "angular-google-maps": "~2.3.0",
-    "angular-ui-notification": "~0.1.0",
+    "angular-ui-notification": "^0.1.0",
     "angular-google-places-autocomplete": "~0.2.7",
     "angular-bootstrap-switch": "~0.4.1",
     "angular-moment": "~0.10.3",

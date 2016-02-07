@@ -6,7 +6,7 @@
     .controller('addEventController', addEventController);
 
   /** @ngInject */
-  function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService, googleAddress, $cookieStore, $location) {
+  function addEventController($scope, $state, $rootScope, Facebook, sportService, eventService, googleAddress, $cookieStore, $location, Notification) {
     var vm = this;
     vm.time = null;
     vm.minute = null;
@@ -90,7 +90,12 @@
       var eventData = {user_id: $cookieStore.get('user_id'), sport_id: vm.sport, start_time: start, duration: 2,
         registration_min: vm.registration_min, registration_limit: vm.registration_limit, location: vm.eventAddress, description: vm.description};
       console.log("Event data: ", eventData);
-      eventService.createEvent(eventData);
+      eventService.createEvent(eventData).then(function() {
+        Notification.success('Event was created.');
+        $timeout(function() {
+          $state.go('myEvents');
+        }, 3000);
+      });
       $location.path('/myEvents');
     };
 
