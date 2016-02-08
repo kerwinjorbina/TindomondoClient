@@ -57,9 +57,9 @@
 
     $scope.changeButton = function(){
 
-      if(document.getElementById('joinButton').textContent === 'JOIN') 
+      if(document.getElementById('joinButton').textContent === 'JOIN')
         document.getElementById('joinButton').textContent = 'UNJOIN'
-      else 
+      else
         document.getElementById('joinButton').textContent = 'JOIN';
 
       if ($("#joinButton").attr('class') === 'unjoinButton') {
@@ -74,7 +74,7 @@
         else{
           vm.registeredParticipants += 1;
           $("#joinButton").attr('class','unjoinButton');
-          registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});          
+          registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});
         }
 
       }
@@ -87,7 +87,6 @@
     }*/
 
     eventService.getEvent($stateParams.id).then(function(response){
-      console.log(response);
       sportService.getSport(response.data.sport_id).then(function(sport_response){
         vm.activity = sport_response.data.name;
       });
@@ -97,6 +96,7 @@
       vm.eventAddress = response.data.location;
       vm.eventParticipants = response.data.registration_limit;
       vm.minParticipants = response.data.registration_min;
+      vm.eventDescription = response.data.description;
       vm.event_id = $stateParams.id;
 
       registrationService.getEventParticipants($stateParams.id).then(function(registration_response){
@@ -133,7 +133,6 @@
       vm.map.center.longitude = coords.longitude;
       vm.dep_marker.coords.latitude = coords.latitude;
       vm.dep_marker.coords.longitude = coords.longitude;
-      vm.eventDescription;
       $scope.$apply();
     }
 
