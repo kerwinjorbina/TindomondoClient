@@ -21,11 +21,11 @@
     var lat = 0.0;
     var lng = 1.0;
 
-    Facebook.api('/me', function(user) {
+    /*Facebook.api('/me', function(user) {
       $scope.$apply(function() {
         $rootScope.$broadcast('fbLoginHappened', user);
       });
-    });
+    });*/
 
     /*var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -98,135 +98,116 @@
       vm.minParticipants = response.data.registration_min;
       vm.eventDescription = response.data.description;
       vm.event_id = $stateParams.id;
-
+      
+      
+      
       registrationService.getEventParticipants($stateParams.id).then(function(registration_response){
         vm.registeredParticipants = registration_response.data.count;
       });
-
-     vm.dep_marker = {
-      id: 0,
-      coords: {
-        latitude: 58.366315,
-        longitude: 26.690522
-      },
-
-      options: { draggable: false, visible: true},
-      events: {
-      }
-    };
-
-   vm.dest_marker = {
-      id: 1,
-      coords: {
-        latitude: 58.3664525,
-        longitude: 26.713723699999946
-      },
-
-      options: { draggable: false, visible: true},
-      events: {
-      }
-    };
-
-    vm.fillMap = fillMap;
-    function fillMap(coords) {
-      vm.map.center.latitude = coords.latitude;
-      vm.map.center.longitude = coords.longitude;
-      vm.dep_marker.coords.latitude = coords.latitude;
-      vm.dep_marker.coords.longitude = coords.longitude;
-      $scope.$apply();
-    }
-
-
-    vm.markers = [];
-    vm.markers.push(vm.dep_marker);
-    vm.markers.push(vm.dest_marker);
-
-    vm.currentPositionCallback = currentPositionCallback;
-    function currentPositionCallback(position) {
-      lat = position.coords.latitude;
-      lng = position.coords.longitude;
-
-      fillMap(position.coords);
-
-      //not used but let it be
-      googleAddress.getAddress(position.coords.latitude, position.coords.longitude).then(function successCallback(response) {
-        vm.currentLocation = response.data.results[0].formatted_address;
-      });
-    }
-
-    function getCurrentLocation() {
+      
+      
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(currentPositionCallback);
-      } else {
-        Notification.warning("Your browser doesn't support geolocation");
-      }
+      navigator.geolocation.getCurrentPosition(success);
+    } else {
+      error('Geo Location is not supported');
     }
-    getCurrentLocation();
-
-
-    vm.map = {
-      center: {
-        latitude : vm.dep_marker.coords.latitude,
-        longitude : vm.dep_marker.coords.longitude
-      },
-      bounds: new google.maps.LatLngBounds(),
-      zoom: 12,
-      options: {
-        mapTypeControl: true,
-        panControl: true,
-        zoomControl: true
-      }
-    };
-
-    vm.polylines = [{
-      id: 0,
-      path: [],
-      stroke: {
-        color: '#3498db',
-        weight: 3
-      },
-      editable: false,
-      draggable: false,
-      geodesic: true,
-      visible: false,
-      icons: [{
-
-        offset: '25px',
-        repeat: '50px'
-      }]
-    }];
-
+    
+    
+    function success(position) {
+      var lat = position.coords.latitude;
+      console.log(lat);
+      var long = position.coords.longitude;
+      vm.dep_marker = {
+            id: 0,
+            coords: {
+              latitude: lat,
+              longitude: long
+      
+            },
+      
+            options: { draggable: false, visible: true},
+            events: {
+            }
+      };
+          
+      vm.map = {
+          center: {
+            latitude : vm.dep_marker.coords.latitude,
+            longitude : vm.dep_marker.coords.longitude
+          },
+          bounds: new google.maps.LatLngBounds(),
+          zoom: 12,
+          options: {
+            mapTypeControl: true,
+            panControl: true,
+            zoomControl: true
+          }
+      };
+      
+      vm.markers = [];
+      vm.markers.push(vm.dep_marker);
+      
+      vm.dest_marker = {
+        id: 1,
+        coords: {
+          latitude: 58.3664525,
+          longitude: 26.713723699999946
+        },
+  
+        options: { draggable: false, visible: true},
+        events: {
+        }
+      };
+      
+      
       vm.createRouteRequest = createRouteRequest;
-
-          function createRouteRequest() {
-            return {
-              origin: new google.maps.LatLng(
-                vm.dep_marker.coords.latitude,
-                vm.dep_marker.coords.longitude
-              ),
-              destination: new google.maps.LatLng(
-                vm.dest_marker.coords.latitude,
-                vm.dest_marker.coords.longitude
-              ),
-              travelMode: google.maps.TravelMode['WALKING'],
-              optimizeWaypoints: true
-            };
-          }
-
+      function createRouteRequest() {
+        return {
+          origin: new google.maps.LatLng(
+            vm.dep_marker.coords.latitude,
+            vm.dep_marker.coords.longitude
+          ),
+          destination: new google.maps.LatLng(
+            vm.dest_marker.coords.latitude,
+            vm.dest_marker.coords.longitude
+          ),
+          travelMode: google.maps.TravelMode['WALKING'],
+          optimizeWaypoints: true
+        };
+      }
+      
+      vm.polylines = [{
+        id: 0,
+        path: [],
+        stroke: {
+          color: '#3498db',
+          weight: 3
+        },
+        editable: false,
+        draggable: false,
+        geodesic: true,
+        visible: false,
+        icons: [{
+  
+          offset: '25px',
+          repeat: '50px'
+        }]
+      }];
+      
       vm.createPolylineRoute = createPolylineRoute;
-          function createPolylineRoute(routeList) {
-            var path = [];
-            angular.forEach(routeList, function(routeElement) {
-              //console.log(routeElement.getNorthEast())
-              var pathPoint = {latitude: routeElement.lat(), longitude: routeElement.lng()};
-              path.push(pathPoint);
-            });
-            vm.polylines[0].path = path;
-            vm.polylines[0].visible = true;
-            $scope.$digest(); //Seems to make map updating faster but is not totally necessary
-          }
-
-        googleAddress.getCoordinates(vm.eventAddress).then(function successCallback(coordinates_response) {
+      function createPolylineRoute(routeList) {
+        var path = [];
+        angular.forEach(routeList, function(routeElement) {
+          //console.log(routeElement.getNorthEast())
+          var pathPoint = {latitude: routeElement.lat(), longitude: routeElement.lng()};
+          path.push(pathPoint);
+        });
+        vm.polylines[0].path = path;
+        vm.polylines[0].visible = true;
+        $scope.$digest(); //Seems to make map updating faster but is not totally necessary
+      }
+      
+      googleAddress.getCoordinates(vm.eventAddress).then(function successCallback(coordinates_response) {
           vm.dest_marker.coords.latitude = coordinates_response.data.results[0].geometry.location.lat;
           vm.dest_marker.coords.longitude = coordinates_response.data.results[0].geometry.location.lng;
           vm.directionsService.route(createRouteRequest(), function(response, status) {
@@ -235,7 +216,9 @@
             };
           });
         });
-
+        
+      vm.markers.push(vm.dest_marker);
+    }
     });
 
   }

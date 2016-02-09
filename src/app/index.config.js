@@ -10,7 +10,7 @@
     // Enable log
     $logProvider.debugEnabled(true);
 
-    FacebookProvider.init('221580528187597');
+   FacebookProvider.init('221580528187597');
 
     NotificationProvider.setOptions({
       delay: 10000,
