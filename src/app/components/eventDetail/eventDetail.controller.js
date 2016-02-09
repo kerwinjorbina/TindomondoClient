@@ -114,21 +114,18 @@
     
     
     function success(position) {
-      var lat = position.coords.latitude;
-      console.log(lat);
-      var long = position.coords.longitude;
-      vm.dep_marker = {
+          vm.dep_marker = {
             id: 0,
             coords: {
-              latitude: lat,
-              longitude: long
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
       
             },
       
             options: { draggable: false, visible: true},
             events: {
             }
-      };
+          };
           
       vm.map = {
           center: {

@@ -24,46 +24,57 @@
     });
 
     vm.directionsService = new google.maps.DirectionsService();
+    
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success);
+    } else {
+      error('Geo Location is not supported');
+    }
+    
+    function success(position) {
+        vm.map = {
+        center: {
+          latitude : position.coords.latitude,
+          longitude : position.coords.longitude
+        },
+        bounds: new google.maps.LatLngBounds(),
+        zoom: 15,
+        options: {
+          mapTypeControl: true,
+          panControl: true,
+          zoomControl: true,
+          clickable: true
+        },
+        events: {
+          click: function (mapModel, eventName, originalEventArgs) {
+                  vm.markers = [];
+                  var lat = originalEventArgs[0].latLng.lat();
+                  var lng = originalEventArgs[0].latLng.lng();
+                  var marker = {
+                      id: 1,
+                      coords: {
+                          latitude: lat,
+                          longitude: lng
+                      }
+                  };
+                  vm.markers.push(marker);
+                 ;
+                  googleAddress.getAddress(lat, lng).then(function successCallback(response) {
+                    vm.eventAddress = response.data.results[0].formatted_address;
+                  });
+                  $scope.$digest();
+                  
+                  
+                  vm.markers = [];
+                  vm.markers.push(vm.marker);
+              }
+        }
+      };
+      
+    }
+    
 
-    vm.markers = [];
-    vm.markers.push(vm.marker);
-
-    vm.map = {
-      center: {
-        latitude : 58.3661916,
-        longitude : 26.69020660000001
-      },
-      bounds: new google.maps.LatLngBounds(),
-      zoom: 16,
-      options: {
-        mapTypeControl: true,
-        panControl: true,
-        zoomControl: true,
-        clickable: true
-      },
-      events: {
-        click: function (mapModel, eventName, originalEventArgs) {
-                vm.markers = [];
-                var lat = originalEventArgs[0].latLng.lat();
-                var lng = originalEventArgs[0].latLng.lng();
-                var marker = {
-                    id: 1,
-                    coords: {
-                        latitude: lat,
-                        longitude: lng
-                    }
-                };
-                vm.markers.push(marker);
-                //vm.map.center.latitude = lat;
-                //vm.map.center.longitude = lng;
-                //console.log($scope.map.markers);
-                googleAddress.getAddress(lat, lng).then(function successCallback(response) {
-                  vm.eventAddress = response.data.results[0].formatted_address;
-                });
-                $scope.$digest();
-            }
-      }
-    };
+  
 
     sportService.getSports().then(function(sports_response){
       vm.sports = [];
