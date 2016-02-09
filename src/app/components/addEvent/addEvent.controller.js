@@ -65,14 +65,14 @@
                   $scope.$digest();
                   
                   
-                  vm.markers = [];
-                  vm.markers.push(vm.marker);
+                  
               }
         }
       };
       
     }
-    
+    vm.markers = [];
+    vm.markers.push(vm.marker);
 
   
 
