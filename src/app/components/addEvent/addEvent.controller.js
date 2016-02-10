@@ -71,6 +71,46 @@
       };
       
     }
+    
+    function error(err) {
+        vm.map = {
+        center: {
+          latitude : 0,
+          longitude : 0
+        },
+        bounds: new google.maps.LatLngBounds(),
+        zoom: 1,
+        options: {
+          mapTypeControl: true,
+          panControl: true,
+          zoomControl: true,
+          clickable: true
+        },
+        events: {
+          click: function (mapModel, eventName, originalEventArgs) {
+                  vm.markers = [];
+                  var lat = originalEventArgs[0].latLng.lat();
+                  var lng = originalEventArgs[0].latLng.lng();
+                  var marker = {
+                      id: 1,
+                      coords: {
+                          latitude: lat,
+                          longitude: lng
+                      }
+                  };
+                  vm.markers.push(marker);
+                 ;
+                  googleAddress.getAddress(lat, lng).then(function successCallback(response) {
+                    vm.eventAddress = response.data.results[0].formatted_address;
+                  });
+                  $scope.$digest();
+                  
+                  
+                  
+              }
+        }
+      };
+    };
     vm.markers = [];
     vm.markers.push(vm.marker);
 
