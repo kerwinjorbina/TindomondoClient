@@ -69,6 +69,17 @@
             }
           });
         }]
+      }).state('giveFeedback', {
+        url: '/feedback',
+        templateUrl: 'app/components/feedback/feedback.html',
+        controller: 'giveFeedbackController',
+        onEnter: ['$state', 'Facebook', function($state, Facebook) {
+          Facebook.getLoginStatus(function(response) {
+            if (response.status != 'connected') {
+              $state.go('home');
+            }
+          });
+        }]
       })
 
     $urlRouterProvider.otherwise('/');
