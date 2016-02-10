@@ -1,13 +1,17 @@
 <div ng-controller="giveFeedbackController as controller" class="column">
-  <div class="row">
-    <p class="title">Give feedback</p>
-  </div>
-    <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
-      <div>
-          <md-input-container class="md-block">
-          <label>Event description</label>
-          <textarea ng-model="controller.description" md-maxlength="100" rows="3" md-select-on-focus></textarea>
-          </md-input-container>
-      </div>
-    </md-whiteframe>
+  <form name="controllerForm" ng-submit="controller.sendFeedback()">
+    <div class="holder">
+      <div class="title">Give feedback</div>
+      <md-whiteframe class="feedbackPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
+        <div layout="column">
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Feedback</label>
+              <textarea ng-model="controller.description" md-maxlength="500" rows="3" md-select-on-focus></textarea>
+            </md-input-container>
+          </div>
+        </div>
+      </md-whiteframe>
+    </div>
+  </form>
 </div>
