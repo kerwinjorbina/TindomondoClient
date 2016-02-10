@@ -18,8 +18,7 @@
     vm.joinDisplay = true;
     vm.directionsService = new google.maps.DirectionsService();
 
-    var lat = 0.0;
-    var lng = 1.0;
+
 
     /*Facebook.api('/me', function(user) {
       $scope.$apply(function() {
@@ -46,18 +45,20 @@
     registrationService.getUserEvents({event_id: $stateParams.id, user_id: user_id}).then(function(response){
       vm.joinDisplay = response.data == "null";
       if(!vm.joinDisplay){
-        $("#joinButton").attr('class','unjoinButton');
-        $("#joinButton").html('UNJOIN');
+        $scope.join  = false;
+        $scope.unjoin  = true; 
       }
       else{
-        $("#joinButton").attr('class','joinButton');
-        $("#joinButton").html('JOIN');
+        $scope.join  = true;
+        $scope.unjoin  = false; 
       }
     });
     
     $scope.joinEvent = function() {
         if(vm.registeredParticipants == vm.eventParticipants){
           alert("Number of Participants has reached its limit");
+          $scope.join  = true;
+          $scope.unjoin  = false; 
         }
         else{
           vm.registeredParticipants += 1;
@@ -71,6 +72,8 @@
       registrationService.unjoinEvent({event_id: $stateParams.id, user_id: user_id});
       $("#registered_participants").html(vm.registeredParticipants);
     }
+
+
 
     eventService.getEvent($stateParams.id).then(function(response){
       sportService.getSport(response.data.sport_id).then(function(sport_response){

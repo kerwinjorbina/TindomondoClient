@@ -1,6 +1,5 @@
 <div ng-controller="giveFeedbackController as controller">
   <form name="controllerForm" ng-submit="controller.sendFeedback()">
-    <div class="holder">
       <div class="title">Give feedback</div>
       <md-whiteframe class="feedbackPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
         <div layout="column">
@@ -13,8 +12,7 @@
         </div>
       </md-whiteframe>
     <div layout="row joinButtonBox" layout-align="center center">
-        <button id="joinButton" type="submit" class = "btn btn-default joinButton">SEND</button>
-    </div>
+        <button type="submit" class="joinButton">SEND</button>
     </div>
   </form>
 </div>

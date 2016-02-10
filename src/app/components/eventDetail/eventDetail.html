@@ -64,7 +64,7 @@
     </div>
   </md-whiteframe>
   <div layout="row" layout-align="center center">
-    <md-button class="joinButton" ng-click="show=true; joinEvent()" ng-hide="show">JOIN</md-button>
-    <md-button class="unjoinButton"ng-click="show=false; unJoinEvent()" ng-show="show">UNJOIN</md-button> 
+    <md-button class="joinButton" ng-click="join=false; unjoin=true; joinEvent()" ng-show="join">JOIN</md-button>
+    <md-button class="unjoinButton"ng-click="unjoin=false; join=true; unJoinEvent()" ng-show="unjoin">UNJOIN</md-button>
   </div>
 </div>
