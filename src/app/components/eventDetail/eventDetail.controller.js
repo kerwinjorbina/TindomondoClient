@@ -216,6 +216,43 @@
         
       vm.markers.push(vm.dest_marker);
     }
+    
+    function error(err) {
+      
+        vm.map = {
+          center: {
+            latitude : vm.dep_marker.coords.latitude,
+            longitude : vm.dep_marker.coords.longitude
+          },
+          bounds: new google.maps.LatLngBounds(),
+          zoom: 12,
+          options: {
+            mapTypeControl: true,
+            panControl: true,
+            zoomControl: true
+          }
+      };
+        vm.dest_marker = {
+        id: 1,
+        coords: {
+          latitude: 58.3664525,
+          longitude: 26.713723699999946
+        },
+  
+        options: { draggable: false, visible: true},
+        events: {
+        }
+      };
+      
+         
+      googleAddress.getCoordinates(vm.eventAddress).then(function successCallback(coordinates_response) {
+          vm.dest_marker.coords.latitude = coordinates_response.data.results[0].geometry.location.lat;
+          vm.dest_marker.coords.longitude = coordinates_response.data.results[0].geometry.location.lng;
+      });
+        
+      vm.markers.push(vm.dest_marker);
+    
+    }
     });
 
   }
