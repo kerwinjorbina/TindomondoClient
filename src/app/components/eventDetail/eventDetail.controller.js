@@ -54,37 +54,23 @@
         $("#joinButton").html('JOIN');
       }
     });
-
-    $scope.changeButton = function(){
-
-      if(document.getElementById('joinButton').textContent === 'JOIN')
-        document.getElementById('joinButton').textContent = 'UNJOIN'
-      else
-        document.getElementById('joinButton').textContent = 'JOIN';
-
-      if ($("#joinButton").attr('class') === 'unjoinButton') {
-        $("#joinButton").attr('class','joinButton');
-        vm.registeredParticipants -= 1;
-        registrationService.unjoinEvent({event_id: $stateParams.id, user_id: user_id});
-      }
-      else {
+    
+    $scope.joinEvent = function() {
         if(vm.registeredParticipants == vm.eventParticipants){
           alert("Number of Participants has reached its limit");
         }
         else{
           vm.registeredParticipants += 1;
-          $("#joinButton").attr('class','unjoinButton');
           registrationService.createRegistration({event_id: $stateParams.id, user_id: user_id});
-        }
-
-      }
+        };
+        $("#registered_participants").html(vm.registeredParticipants);
+    }
+    
+    $scope.unJoinEvent = function() {
+      vm.registeredParticipants -= 1;
+      registrationService.unjoinEvent({event_id: $stateParams.id, user_id: user_id});
       $("#registered_participants").html(vm.registeredParticipants);
-    };
-   /* function showPosition(position) {
-      var coord = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-      vm.map.center.latitude = coord.lat();
-      vm.map.center.longitude = coord.lng();
-    }*/
+    }
 
     eventService.getEvent($stateParams.id).then(function(response){
       sportService.getSport(response.data.sport_id).then(function(sport_response){

@@ -1,82 +1,68 @@
-<div ng-controller="addEventController as controller">
-<form name="controllerForm" ng-submit="controller.createEvent()" >
-<div>
- <div class="title">
+<div ng-controller="addEventController as controller" class="column">
+  <form name="controllerForm" ng-submit="controller.createEvent()">
+    <div class="title">
       Create an event
-  </div>
-
-<div>
-    <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
-
-      <div layout="column">
-
-        <div layout="row">
-
-          <md-datepicker ng-model="controller.date" md-placeholder="Enter date">
-          </md-datepicker>
-          <md-input-container class="md-block">
-            <label>Time</label>
-            <input type="time" name="time" ng-model="controller.time"
-                   required>
-            <div ng-messages="controllerForm.time.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">You must supply the start time hours.</div>
-              <div ng-message="pattern" class="my-message">That doesn't look like a valid hour format.</div>
-            </div>
-          </md-input-container>
-        </div>
-
-
-        <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Sport</label>
-              <md-select ng-model="controller.sport">
-                <md-option ng-repeat="sport in controller.sports" ng-value="{{sport.id}}">
-                  {{sport.name}}
-                </md-option>
-              </md-select>
+    </div>
+    <div>
+      <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
+        <div layout="column">
+          <div layout="row">
+            <md-datepicker ng-model="controller.date" md-placeholder="Enter date">
+            </md-datepicker>
+            <md-input-container class="md-block">
+              <label>Time</label>
+              <input type="time" name="time" ng-model="controller.time" required>
+              <div ng-messages="controllerForm.time.$error" role="alert" multiple>
+                <div ng-message="required" class="my-message">You must supply the start time hours.</div>
+                <div ng-message="pattern" class="my-message">That doesn't look like a valid hour format.</div>
+              </div>
             </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Sport</label>
+                <md-select ng-model="controller.sport">
+                  <md-option ng-repeat="sport in controller.sports" ng-value="{{sport.id}}">
+                    {{sport.name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Min Participants</label>
+              <input name="registration_min" ng-model="controller.registration_min"
+                     required ng-pattern="/^\d+$/">
+              <div ng-messages="controllerForm.registration_min.$error" role="alert" multiple>
+                <div ng-message="required" class="my-message">You must supply the minimum number of participants.</div>
+                <div ng-message="pattern" class="my-message">That doesn't look like a valid number.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Max Participants</label>
+              <input name="registration_limit" ng-model="controller.registration_limit"
+                     required ng-pattern="/^\d+$/">
+              <div ng-messages="controllerForm.registration_limit.$error" role="alert" multiple>
+                <div ng-message="required" class="my-message">You must supply the minimum number of participants.</div>
+                <div ng-message="pattern" class="my-message">That doesn't look like a valid number.</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div>
+            <md-input-container class="md-block">
+            <label>Event description</label>
+            <textarea ng-model="controller.description" md-maxlength="100" rows="3" md-select-on-focus></textarea>
+            </md-input-container>
+          </div>
         </div>
-
-        <div layout-gt-sm="row">
-
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Min Participants</label>
-            <input name="registration_min" ng-model="controller.registration_min"
-                   required ng-pattern="/^\d+$/">
-            <div ng-messages="controllerForm.registration_min.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">You must supply the minimum number of participants.</div>
-              <div ng-message="pattern" class="my-message">That doesn't look like a valid number.</div>
-            </div>
-          </md-input-container>
-
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Max Participants</label>
-            <input name="registration_limit" ng-model="controller.registration_limit"
-                   required ng-pattern="/^\d+$/">
-            <div ng-messages="controllerForm.registration_limit.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">You must supply the minimum number of participants.</div>
-              <div ng-message="pattern" class="my-message">That doesn't look like a valid number.</div>
-            </div>
-          </md-input-container>
-        </div>
-        <div>
-          <md-input-container class="md-block">
-          <label>Event description</label>
-          <textarea ng-model="controller.description" md-maxlength="100" rows="3" md-select-on-focus></textarea>
-          </md-input-container>
-        </div>
-        </div>
-
       </md-whiteframe>
       <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column" layout="column">
         <div layout="row">
           <div flex="40" class="fieldName">
-              Address
+            Address
           </div>
-
           <div flex="60" class="fieldValue">
-              {{controller.eventAddress}}
-
+            {{controller.eventAddress}}
           </div>
         </div>
         <div layout="row">
@@ -87,13 +73,10 @@
             </ui-gmap-google-map>
           </div>
         </div>
-
       </md-whiteframe>
-      <div layout="row" layout-align="center center">
-        <md-button id="createButton" type="submit" class="createButton">CREATE</md-button>
-      </div
-</div>
-</div>
-</form>
-
+    </div>
+    <div layout="row" layout-align="center center">
+      <md-button id="joinButton" class="createButton" type="submit">CREATE</md-button>
+    </div>
+  </form>
 </div>

@@ -1,71 +1,70 @@
 <div ng-controller="EventController as controller" class="column">
-  <div class="row">
-    <p class="title">Join an event</p>
+  <div class="title">
+    Join an event
   </div>
-    <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
-    <!--<div class="column panel panel-default eventPanel topEventPanel">-->
-      <div layout="row">
-        <div flex="40" class="fieldName">
-            Date
-        </div>
-        <div flex="60" class="fieldValue">
-            {{controller.eventDate + " " + controller.eventTime}}
-        </div>
+  <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
+    <div layout="row">
+      <div flex="40" class="fieldName">
+          Date
       </div>
-      <div layout="row">
-        <div flex="40" class="fieldName">
-          Sport
-        </div>
-        <div flex="60" class="fieldValue">
-            {{controller.activity}}
-        </div>
+      <div flex="60" class="fieldValue">
+          {{controller.eventDate + " " + controller.eventTime}}
       </div>
-      <div layout="row">
-        <div flex="40" class="fieldName">
-            Participants
-        </div>
-        <div flex="60" class="fieldValue">
-            <strong id="registered_participants">{{controller.registeredParticipants}}</strong>/<strong id="total_participants">{{controller.eventParticipants}}</strong>
-            <a href="/#/eventParticipants/{{controller.event_id}}"><i> (See Participants)</i></a>
-        </div>
+    </div>
+    <div layout="row">
+      <div flex="40" class="fieldName">
+        Sport
       </div>
-      <div layout="row">
-        <div flex="40" class="fieldName">
-            Min Participants
-        </div>
-        <div flex="60" class="fieldValue">
-            {{controller.minParticipants}}
-        </div>
+      <div flex="60" class="fieldValue">
+          {{controller.activity}}
       </div>
-       <div layout="row">
-        <div flex="40" class="fieldName">
-            Description
-        </div>
-        <div flex="60" class="fieldValue">
-            {{controller.eventDescription}}
-        </div>
+    </div>
+    <div layout="row">
+      <div flex="40" class="fieldName">
+          Participants
       </div>
-    </md-whiteframe>
-    <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
-    <!--<div class="column panel panel-default eventPanel">-->
-      <div layout="row">
-        <div flex="40" class="fieldName">
-            Address
-        </div>
-        <div flex="60" class="fieldValue">
-          {{controller.eventAddress}}
-        </div>
+      <div flex="60" class="fieldValue">
+          <strong id="registered_participants">{{controller.registeredParticipants}}</strong>/<strong id="total_participants">{{controller.eventParticipants}}</strong>
+          <a href="/#/eventParticipants/{{controller.event_id}}"><i> (See Participants)</i></a>
       </div>
-         <div layout="row">
-          <div id="map" flex="100">
-            <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
-              <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options" events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
-              <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="true" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
-            </ui-gmap-google-map>
-          </div>
-        </div>
-    </md-whiteframe>
-    <div layout="row" layout-align="center center">
-      <md-button id="joinButton" type="button" class="joinButton" ng-click="changeButton()">JOIN</md-button>
+    </div>
+    <div layout="row">
+      <div flex="40" class="fieldName">
+          Min Participants
+      </div>
+      <div flex="60" class="fieldValue">
+          {{controller.minParticipants}}
+      </div>
+    </div>
+    <div layout="row">
+      <div flex="40" class="fieldName">
+        Description
+      </div>
+      <div flex="60" class="fieldValue">
+        {{controller.eventDescription}}
+      </div>
+    </div>
+  </md-whiteframe>
+  <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
+    <div layout="row">
+      <div flex="40" class="fieldName">
+          Address
+      </div>
+      <div flex="60" class="fieldValue">
+        {{controller.eventAddress}}
+      </div>
+    </div>
+    <div layout="row">
+      <div id="map" flex="100">
+        <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom'>
+          <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options" events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+          <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="true" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
+        </ui-gmap-google-map>
+      </div>
+    </div>
+  </md-whiteframe>
+  <div layout="row" layout-align="center center">
+    <md-button class="joinButton" ng-click="show=true; joinEvent()" ng-hide="show">JOIN</md-button>
+    <md-button class="unjoinButton"ng-click="show=false; unJoinEvent()" ng-show="show">UNJOIN</md-button> 
   </div>
 </div>
