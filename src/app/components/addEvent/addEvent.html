@@ -1,8 +1,8 @@
 <div ng-controller="addEventController as controller">
 <form name="controllerForm" ng-submit="controller.createEvent()" >
-<div class="holder">
+<div>
  <div class="title">
-            Make an event
+      Create an event
   </div>
 
 <div>
@@ -89,9 +89,9 @@
         </div>
 
       </md-whiteframe>
-      <div layout="row joinButtonBox" layout-align="center center">
-        <button id="joinButton" type="submit" class = "btn btn-default joinButton">CREATE</button>
-      </div>
+      <div layout="row" layout-align="center center">
+        <md-button id="createButton" type="submit" class="createButton">CREATE</md-button>
+      </div
 </div>
 </div>
 </form>
