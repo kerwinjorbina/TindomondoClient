@@ -20,12 +20,7 @@
     
     function sendFeedback() {
       var currentdate = new Date();
-      var hours = (currentdate.getHours()<10?'0':'') + currentdate.getHours();
-      var minutes = (currentdate.getMinutes()<10?'0':'') + currentdate.getMinutes();
-      var seconds = (currentdate.getSeconds()<10?'0':'') + currentdate.getSeconds();
-      var datetime = currentdate.getDate() + "/" + (currentdate.getMonth()+1) + "/" + currentdate.getFullYear() + " " + hours + ":" + minutes + ":" + seconds;
-      var feedbackData = {user_id: $cookieStore.get('user_id'), feedback: vm.feedback, date_time: datetime};
-      
+      var feedbackData = {user_id: $cookieStore.get('user_id'), feedback_description: vm.feedback, date_time: currentdate};
       feedbackService.sendFeedback(feedbackData).then(function() {
         Notification.success('Thank you!');
         $timeout(function() {

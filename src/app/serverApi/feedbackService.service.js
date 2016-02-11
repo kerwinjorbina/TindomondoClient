@@ -7,7 +7,7 @@
 
   function feedbackService($http, $q, backendlink) {
     return {
-      getEvents: function(data) {
+      sendFeedback: function(data) {
         var event = $q.defer();
         $http({
           method: 'POST',
