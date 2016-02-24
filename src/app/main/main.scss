@@ -1,17 +1,35 @@
 .loginButton {
-  background-color: #2E9497;
+  background: #2E9497;
+  height: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #FFF;
+  font-weight: 700;
+  font-family: Montserrat,sans-serif;
+  border-color: #2E9497;
 }
 
-.loginButton:hover {
-  background-color: #2e9789;
+.citation{
+  font-size: 20px;
+  color:white;
+  text-align:right;
+  padding-top:60px;
+  font-family: 'Montserrat', sans-serif;
 }
-
-.mainbg {
-  background-image: url("./../assets/images/landing.jpg");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.text{
+  font-size: 30px;
+  color:white;
+  text-align:right;
+  font-family: 'Montserrat', sans-serif;
+}
+.name{
+  font-size: 15px;
+  padding-top:25px;
+  color:white;
+  text-align:right;
+  font-family: 'Montserrat', sans-serif;
+}
+.but{
+  padding-top: 50px;
+  text-align: right;
 }

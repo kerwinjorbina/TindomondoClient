@@ -1,0 +1,18 @@
+<div ng-controller="giveFeedbackController as controller">
+  <form name="controllerForm" ng-submit="controller.sendFeedback()">
+      <div class="title">Give feedback</div>
+      <md-whiteframe class="feedbackPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
+        <div layout="column">
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Feedback</label>
+              <textarea ng-model="controller.feedback" md-maxlength="500" rows="6" md-select-on-focus></textarea>
+            </md-input-container>
+          </div>
+        </div>
+      </md-whiteframe>
+    <div layout="row joinButtonBox" layout-align="center center">
+        <button type="submit" class="joinButton">SEND</button>
+    </div>
+  </form>
+</div>

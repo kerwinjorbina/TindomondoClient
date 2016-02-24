@@ -2,7 +2,7 @@
 <html ng-app="client">
   <head>
     <meta charset="utf-8">
-    <title>client</title>
+    <title>Tindomondo</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -27,8 +27,31 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <div ng-controller="AppCtrl" layout="column" ng-cloak="" ng-app="MyApp" style="height:100%">
+      <div layout="row" ng-include="'app/components/navbar/navbar.html'"></div>
 
-    <div ui-view></div>
+      <section layout="row" flex="" ng-controller="NavbarController as controller">
+
+        <md-sidenav data-ng-show="controller.loggedIn" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-cloak>
+          <div class="sidebarHeader" layout="column" layout-align="center center">
+            <md-list-item data-ng-show="controller.profilePicImage"><img data-ng-show="controller.profilePicImage" src="{{controller.profilePicImage}}" alt=""/></md-list-item>
+            <md-list-item data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady">{{controller.user.name}}</md-list-item>
+          </div>
+          <md-list>  
+            <md-list-item class="active"><a href="/#/">Join Events</a></md-list-item>
+            <md-list-item data-ng-show="controller.loggedIn"><a href="/#/myEvents">My Events</a></md-list-item>
+            <md-list-item data-ng-show="controller.loggedIn"><a href="/#/feedback">Give Feedback</a></md-list-item>
+            <md-list-item data-ng-show="controller.loggedIn" data-ng-disabled="!controller.facebookReady" data-ng-click="controller.logout()"><a href="#">Sign Out</a></md-list-item>
+            <!--<md-list-item ng-controller="LeftCtrl" hide-gt-sm=""><a ng-click="close()" >Close Menu</a>-->
+            </md-list-item>
+          </md-list>
+
+
+          </md-sidenav>
+        <md-content style="background:transparent" ui-view flex="" layout-padding=""></md-content>
+
+      </section>
+    </div>
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

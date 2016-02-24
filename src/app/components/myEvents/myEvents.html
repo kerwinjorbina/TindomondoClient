@@ -1,0 +1,18 @@
+<div>
+  <div class="row">
+    <p class="title">My Events</p>
+  </div>
+  <div>
+    <div class="panel"  ng-repeat="event in events">
+      <a href="/#/eventDetail/{{event.event_id}}">
+        <div class="panel-body">
+          <div class="row vertical-divider label-main">
+            <div class="col-xs-6"><h3><strong>{{event.sport_name}}</strong></h3></div>
+            <div class="col-xs-6"><h5>{{event.time}}</h5>
+                <h6>{{event.location}}</h6></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

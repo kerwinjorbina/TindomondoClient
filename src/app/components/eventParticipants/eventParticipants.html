@@ -1,0 +1,19 @@
+<div layout-align="center" layout="column">
+  <div class="row">
+    <p class="title">Event Participants</p>
+  </div>
+  <div layout="column" ng-repeat="participant in participants">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{participant.name}}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-user-avatar">
+              <img ng-src='{{participant.picture}}'></img>
+            </div>
+          </md-card-title-media>
+        </md-card-title>
+      </md-card>
+  </div>
+</div>

@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, $rootScope, $timeout, Facebook, $http) {
+  function MainController($scope, $rootScope, $route, $timeout, Facebook, $http, $location, userService, $cookieStore) {
     var vm = this;
 
     // Define user empty data :/
@@ -38,6 +38,7 @@
         userIsConnected = true;
         vm.logged = true;
         vm.me();
+        $location.path('/eventList');
       }
     });
 
@@ -78,9 +79,14 @@
         /**
          * Using $scope.$apply since this happens outside angular framework.
          */
+        userService.createUser({name: response.name, fb_id: response.id});
+        userService.getUserByFbId(response.id).then(function(response){
+          $cookieStore.put('user_id',response.data.id);
+        });
         $scope.$apply(function() {
           vm.user = response;
           $rootScope.$broadcast('fbLoginHappened', vm.user);
+          $location.path('/eventList');
         });
 
       });
@@ -95,6 +101,7 @@
           vm.user   = {};
           vm.logged = false;
           userIsConnected = false;
+          $route.reload();
         });
       });
     };
@@ -104,6 +111,7 @@
       vm.logged = false;
       userIsConnected = false;
       vm.buttonDisabled = false;
+      $route.reload();
     });
 
   }

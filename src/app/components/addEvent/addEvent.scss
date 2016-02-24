@@ -1,10 +1,12 @@
 .angular-google-map-container { height:400px;}
 
-.content{
-  padding-top: 85px;
-}
+
 .panel{
     text-align: center;
+}
+
+.addForm{
+    padding-top: 10px;
 }
 
 .title{
@@ -26,17 +28,26 @@
   border-color: #2E9497;
 }
 
+.createButton:not([disabled]):hover {
+  background-color: #2e8397;
+  color: #FFFFFF;
+  border-color: #2e8397;
+}
+
 .createEventPanel{
   font-family: 'Montserrat', sans-serif;
   width: 500px;
   margin:0 auto;
   line-height: 300%;
-  padding: 0px
-  
+  padding: 0px;
+
+
+
 }
 .topCreateEventPanel{
   font-family: 'Montserrat', sans-serif;
   margin-bottom: 20px;
+  border: 1px solid black;
 }
 
 p {
@@ -48,10 +59,18 @@ p {
 .fieldName{
   text-align:left;
   margin-left: 10px;
-  border-right: 1px solid #ccc;
+  //border-right: 1px solid #ccc;
 }
 .fieldValue{
   margin-left: 10px;
   text-align:left;
 }
-
+.datepickerdemoBasicUsage {
+  /** Demo styles for mdCalendar. */ }
+  .datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px; }
+  .datepickerdemoBasicUsage .validation-messages {
+    font-size: 11px;
+    color: darkred;
+    margin: 10px 0 0 25px;
+  }

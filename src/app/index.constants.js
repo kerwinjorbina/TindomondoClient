@@ -5,5 +5,5 @@
   angular
     .module('client')
     .constant('moment', moment)
-    .constant('backendlink', "http://api.tindomondo.com/");
+    .constant('backendlink', "http://tindomondo.com:3000/");
 })();

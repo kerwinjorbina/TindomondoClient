@@ -8,6 +8,11 @@
 
 var gulp = require('gulp');
 var wrench = require('wrench');
+var rsync = require('gulp-rsync');
+var gutil = require('gulp-util');
+var push = require('git-push');
+var argv = require('minimist')(process.argv.slice(2));
+
 
 /**
  *  This will load all js or coffee files in the gulp directory
@@ -28,10 +33,42 @@ gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
-gulp.task('serveprod', function() {
-  connect.server({
-    root: '/',
-    port: process.env.PORT || 3000, // localhost:5000
-    livereload: false
+
+
+gulp.task('deploy', function() {
+  gulp.src('dist/**')
+    .pipe(rsync({
+      root: 'dist',
+      hostname: 'tindomondo.com',
+      username: 'TindoAdmin',
+      destination: '~/production',
+      incremental: true
+    }));
+});
+
+gulp.task('rsync', function() {
+  return gulp.src('./dist/**')
+    .pipe(rsync({
+      destination: '~/production',
+      root: '~',
+      hostname: 'tindomondo.com',
+      username: 'TindoAdmin',
+      incremental: true,
+      progress: true,
+      relative: true,
+      emptyDirectories: true,
+      recursive: true,
+      clean: true,
+      exclude: ['.DS_Store'],
+      include: []
+    }));
+});
+
+gulp.task('moveToDist', function() {
+  push('./dist', 'https://github.com/alaponin/TindomondoClientDist', function() {
+    console.log('Done!');
   });
 });
+
+
+

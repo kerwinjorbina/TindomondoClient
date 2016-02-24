@@ -20,12 +20,10 @@
         return sport.promise;
       },
       getSport: function(data) {
-        alert(data);
         var sport = $q.defer();
         $http({
           method: 'GET',
-          url: backendlink+'/sports/'+id+'.json',
-          data: data
+          url: backendlink+'/sports/'+data+'.json',
         }).then(function(data) {
           sport.resolve(data);
         });

@@ -1,9 +1,21 @@
-body {
-  background-image: url("./../assets/images/landing.jpg");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.label-main{
+    color: #5F5F5F;
+}
+
+.label-main:hover {
+    color: #F16A44;
+}
+
+.panel-body {
+	padding: 0px;
+}
+
+.panel {
+	width: 70%;
+	margin-left: auto ;
+	margin-right: auto ;
+}
+
+.row.vertical-divider > div[class^="col-"] {
+	border-left: 1px;
 }

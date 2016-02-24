@@ -1,80 +1,82 @@
-<form ng-submit="createEvent()">
-<div class="holder">
-    <div ng-include="'app/components/navbar/navbar.html'"></div>
-</div>
-<div ng-controller="addEventController as controller" class="container">
-    <div class="container content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="title">
-            Make an event
-          </div>
-        </div>
-      </div>
-      <div class="container panel panel-default createEventPanel topCreateEventPanel">
-        <div class="row">
-          <div class="col-md-4">
-              <div class="fieldName">Date</div>
-          </div>
-          <div class="col-md-8">
-              <div class="fieldValue"><input type="date" ng-model="eventData.date"><input type="time" ng-model="eventData.time"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-              <div class="fieldName">Sport</div>
-          </div>
-          <div class="col-md-8">
-              <div class="fieldValue">
-                  <select ng-model="eventData.sport" ng-options="sport.id as sport.name for sport in sports">
-                  </select>
+<div ng-controller="addEventController as controller" class="column">
+  <form name="controllerForm" ng-submit="controller.createEvent()">
+    <div class="title">
+      Create an event
+    </div>
+    <div>
+      <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column">
+        <div layout="column">
+          <div layout="row">
+            <md-datepicker ng-model="controller.date" md-placeholder="Enter date">
+            </md-datepicker>
+            <md-input-container class="md-block">
+              <label>Time</label>
+              <input type="time" name="time" ng-model="controller.time" required>
+              <div ng-messages="controllerForm.time.$error" role="alert" multiple>
+                <div ng-message="required" class="my-message">You must supply the start time hours.</div>
+                <div ng-message="pattern" class="my-message">That doesn't look like a valid hour format.</div>
               </div>
+            </md-input-container>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-              <div class="fieldName">Max Participants</div>
+          <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Sport</label>
+                <md-select ng-model="controller.sport">
+                  <md-option ng-repeat="sport in controller.sports" ng-value="{{sport.id}}">
+                    {{sport.name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
           </div>
-          <div class="col-md-8">
-              <div class="fieldValue">
-                  <select ng-model="eventData.registration_limit" ng-options="n for n in [] | range:1:31">
-                  </select>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Min Participants</label>
+              <input name="registration_min" ng-model="controller.registration_min"
+                     required ng-pattern="/^\d+$/">
+              <div ng-messages="controllerForm.registration_min.$error" role="alert" multiple>
+                <div ng-message="required" class="my-message">You must supply the minimum number of participants.</div>
+                <div ng-message="pattern" class="my-message">That doesn't look like a valid number.</div>
               </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-              <div class="fieldName">Min Participants</div>
-          </div>
-          <div class="col-md-8">
-              <div class="fieldValue">
-                  <select ng-model="eventData.registration_min" ng-options="n for n in [] | range:1:31">
-                  </select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Max Participants</label>
+              <input name="registration_limit" ng-model="controller.registration_limit"
+                     required ng-pattern="/^\d+$/">
+              <div ng-messages="controllerForm.registration_limit.$error" role="alert" multiple>
+                <div ng-message="required" class="my-message">You must supply the minimum number of participants.</div>
+                <div ng-message="pattern" class="my-message">That doesn't look like a valid number.</div>
               </div>
+            </md-input-container>
+          </div>
+          <div>
+            <md-input-container class="md-block">
+            <label>Event description</label>
+            <textarea ng-model="controller.description" md-maxlength="100" rows="3" md-select-on-focus></textarea>
+            </md-input-container>
           </div>
         </div>
-      </div>
-      <div class="container panel panel-default eventPanel">
-        <div class="row">
-          <div class="col-md-4">
-              <div class="fieldName">Address</div>
+      </md-whiteframe>
+      <md-whiteframe class="eventPanel topEventPanel" flex-xs="90" flex-sm="60" flex-md="45" flex-gt-md="30" layout="column" layout="column">
+        <div layout="row">
+          <div flex="40" class="fieldName">
+            Address
           </div>
-          <div class="col-md-8">
-            <div class="fieldValue">{{controller.eventAddress}}</div>
+          <div flex="60" class="fieldValue">
+            {{controller.eventAddress}}
           </div>
         </div>
-        <div class="row">
-          <div id="map" class="col-md-12">
+        <div layout="row">
+          <div id="map" flex="100">
             <ui-gmap-google-map center='controller.map.center' zoom='controller.map.zoom' events='controller.map.events'>
               <ui-gmap-marker ng-repeat="m in controller.markers" coords="m.coords" options="m.options" events="m.events" icon="m.icon" idkey="m.id"></ui-gmap-marker>
               <ui-gmap-polyline ng-repeat="p in controller.polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="true" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
             </ui-gmap-google-map>
           </div>
         </div>
-      </div>
-      <div class="col-md-12">
-        <button id="joinButton" type="submit" class = "btn btn-default joinButton">CREATE</button>
-      </div>
-  </div>
+      </md-whiteframe>
+    </div>
+    <div layout="row" layout-align="center center">
+      <md-button id="joinButton" class="createButton" type="submit">CREATE</md-button>
+    </div>
+  </form>
 </div>
-</form>

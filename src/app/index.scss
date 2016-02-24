@@ -12,7 +12,13 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
  */
 // bower:scss
 // endbower
-
+.sidebarHeader{
+  padding-top:10px;
+  background: #D3D3D3;
+}
+img{
+  border-radius:100px;
+}
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -31,6 +37,11 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 .glyphicon.glyphicon-chevron-right {
     font-size: 50px;
 }
+
+html {
+  background-color: transparent;
+}
+
 
 body {
 	background-image: url("./../assets/images/landing.jpg");
